@@ -15,5 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
+    AvailableHour.associate = (models) => {
+        AvailableHour.hasOne(models.Schedule, {foreignKey: "date_hour_id"});
+    }
+
+
     return AvailableHour;
 };
