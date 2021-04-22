@@ -54,11 +54,11 @@ module.exports = (sequelize, DataTypes) => {
 
     );
 
-    // Address.associate = (models) => {
+    Address.associate = (models) => {
 
-    //     Schedule.hasOne(models.User, {foreignKey: "address_id"});
+        Address.hasOne(models.User, {foreignKey: "address_id"});
     
-    // };
+    };
 
 
     return Address;

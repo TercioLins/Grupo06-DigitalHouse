@@ -18,7 +18,8 @@ const usersController = {
                 gender,
                 ethnicity,
                 email,
-                password
+                password,
+                address_id
             } = req.body;
 
         let user = await User.create({ 
@@ -31,7 +32,8 @@ const usersController = {
                 gender,
                 ethnicity,
                 email,
-                password 
+                password,
+                address_id 
             }
         );
         return res.status(200).json(user);
@@ -70,7 +72,7 @@ const usersController = {
 
     find: async (req, res) => {
         let { id } = req.params;
-        let user = await User.find({
+        let user = await User.findAll({
             where: { id }
         });
 

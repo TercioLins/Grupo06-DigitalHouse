@@ -29,10 +29,10 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
-    // User.associate = (models) => {
-    //     User.belongsTo(models.Addresses, {foreignKey:"address_id"});
-    //     User.hasOne(models.Schedule, {foreignKey:"date_hour_id"});
-    // }
+    User.associate = (models) => {
+        User.belongsTo(models.Address, {foreignKey:"address_id"});
+        // User.belongsTo(models.Schedule, {foreignKey:"date_hour_id"});
+    }
 
     return User;
 }

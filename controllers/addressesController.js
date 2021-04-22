@@ -17,7 +17,7 @@ const addressesController = {
 
     create: async (request, response) => {
 
-        let {address, number, complement, zip_code, neighborhood, city, states} = request.body;
+        let {address, number, complement, zip_code, neighborhood, city, state} = request.body;
 
 
 
@@ -35,7 +35,7 @@ const addressesController = {
 
             city,
             
-            states
+            state
 
         });
 
@@ -49,7 +49,7 @@ const addressesController = {
 
         let { id } = request.params;
 
-        let {address, number, complement, zip_code, neighborhood, city, states} = request.body;
+        let {address, number, complement, zip_code, neighborhood, city, state} = request.body;
 
 
 
@@ -67,7 +67,7 @@ const addressesController = {
 
             city,
             
-            states
+            state
 
         }, {
 
@@ -103,7 +103,7 @@ const addressesController = {
 
         let address = await Address.findAll({
 
-            where: { usuarios_id: id}
+            where: { id }
 
         });
 
