@@ -1,26 +1,31 @@
-const {Schedule, sequelize} = require("../models")
+const { Schedule, sequelize } = require("../models");
 
 const schedulesController = {
     index: async (req, res) => {
-        let schedule = await Schedule.findAll();
+        let {id} = req.params;
+        let schedule = await Schedule.findAll({
+            where: {
+                id
+            }
+        });
         return res.status(200).json(schedule);
     },
     create: async (req, res) => {
         let {user_id, date_hour_id} = req.body;
         
         let schedule = await Schedule.create({
-            user_id,
-            date_hour_id
+            user_id, date_hour_id
         });
-        return res.status(200).json(schedule)
+
+        return res.status(200).json(schedule);
     },
     delete: async (req, res) => {
-        let schedule = req.params;
+        let {id} = req.params;
         await Schedule.destroy({where: {
-            id: schedule
-        }})
-        return res.send('Agendamento cancelado!')
+            id: schedule.id
+        }});
+        return res.send('Agendamento cancelado!');
     }
-}
+};
 
 module.exports = schedulesController;

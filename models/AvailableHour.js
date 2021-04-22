@@ -1,5 +1,4 @@
 module.exports = (sequelize, DataTypes) => {
-    
     const AvailableHour = sequelize.define(
         "AvailableHour", {
             date: DataTypes.DATEONLY,
@@ -8,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.BOOLEAN,
                 defaultValue: true
             }
-                
         }, {
             tableName: "tbl_available_hours",
             timestamps: false
@@ -16,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     );
 
     AvailableHour.associate = (models) => {
-        AvailableHour.hasOne(models.Schedule, {foreignKey: "date_hour_id"});
+        AvailableHour.hasOne(models.Schedule, {
+            foreignKey: "date_hour_id",
+        });
     };
 
     return AvailableHour;

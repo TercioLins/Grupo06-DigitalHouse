@@ -1,4 +1,4 @@
-const {AvailableHour, sequelize} = require("../models");
+const {AvailableHour, sequelize} = require('../models');
 
 const availableHoursController = {
     index: async (req, res) => {
@@ -8,8 +8,6 @@ const availableHoursController = {
     update: async (req, res) => {
         const {id} = req.params;
         const {date, hour, available} = req.body;
-
-
         let availableHour = await AvailableHour.update({
             available
         }, {
@@ -17,7 +15,6 @@ const availableHoursController = {
         });
         return res.status(200).json(availableHour);
     }
-
-};
+}
 
 module.exports = availableHoursController;
