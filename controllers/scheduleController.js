@@ -2,7 +2,12 @@ const { Schedule, sequelize } = require("../models");
 
 const schedulesController = {
     index: async (req, res) => {
-        let schedule = await Schedule.findAll();
+        let {id} = req.params;
+        let schedule = await Schedule.findAll({
+            where: {
+                id
+            }
+        });
         return res.status(200).json(schedule);
     },
     create: async (req, res) => {
