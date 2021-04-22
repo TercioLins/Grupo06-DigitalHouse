@@ -1,4 +1,4 @@
-const {AvailableHour, sequelize} = require("../models")
+const {AvailableHour, sequelize} = require("../models");
 
 const availableHoursController = {
     index: async (req, res) => {
@@ -18,6 +18,6 @@ const availableHoursController = {
         return res.status(200).json(availableHour);
     }
 
-}
+};
 
 module.exports = availableHoursController;

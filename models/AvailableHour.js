@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
             available: {
                 type: DataTypes.BOOLEAN,
                 defaultValue: true
-            } 
+            }
                 
         }, {
             tableName: "tbl_available_hours",
@@ -17,8 +17,7 @@ module.exports = (sequelize, DataTypes) => {
 
     AvailableHour.associate = (models) => {
         AvailableHour.hasOne(models.Schedule, {foreignKey: "date_hour_id"});
-    }
-
+    };
 
     return AvailableHour;
 };
