@@ -4,8 +4,8 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
-let availableHoursRouter = require('./routes/availableHourRouter');
-let scheduleRouter = require('./routes/scheduleRouter');
+let availableHoursRouter = require('./routes/availableHoursRouter');
+let scheduleRouter = require('./routes/schedulesRouter');
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/usersRouter');
 let addressesRouter = require('./routes/addressesRouter');

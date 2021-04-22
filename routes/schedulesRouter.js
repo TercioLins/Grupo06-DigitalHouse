@@ -1,5 +1,5 @@
 var express = require("express");
-const schedulesController = require("../controllers/scheduleController");
+const schedulesController = require("../controllers/schedulesController");
 var router = express.Router();
 
 /* GET users listing. */
