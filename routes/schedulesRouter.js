@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const schedulesController = require("../controllers/scheduleController");
+const schedulesController = require("../controllers/schedulesController");
 
 /* GET home page. */
 router.get("/", schedulesController.index);
