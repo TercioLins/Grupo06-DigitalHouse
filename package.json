@@ -18,6 +18,14 @@
   },
   "description": "Projeto integrador com a finalidade de desenvolver uma página para agendamentos de vacinação.",
   "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TercioLins/Grupo06-DigitalHouse.git"
+  },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TercioLins/Grupo06-DigitalHouse/issues"
+  },
+  "homepage": "https://github.com/TercioLins/Grupo06-DigitalHouse#readme"
 }
