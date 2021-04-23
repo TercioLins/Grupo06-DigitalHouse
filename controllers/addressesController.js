@@ -1,7 +1,5 @@
 const { Address, sequelize } = require("../models");
 
-/*    GET users listing.   */
-
 const addressesController = {
     index: async (request, response) => {
         let addresses = await Address.findAll();
@@ -22,20 +20,13 @@ const addressesController = {
 
         let newAddress = await Address.create({
             address,
-
             number,
-
             complement,
-
             zip_code,
-
             neighborhood,
-
             city,
-
             state,
         });
-
         return response.json(newAddress);
     },
 
@@ -55,26 +46,17 @@ const addressesController = {
         let addressUpdated = await Address.update(
             {
                 address,
-
                 number,
-
                 complement,
-
                 zip_code,
-
                 neighborhood,
-
                 city,
-
                 state,
             },
             {
                 where: { id },
             }
         );
-
-        //retorno
-
         return response.send(addressUpdated);
     },
 
@@ -93,7 +75,7 @@ const addressesController = {
     show: async (req, res) => {
         let { id } = req.params;
 
-        let address = await Address.findAll({
+        let address = await Address.findOne({
             where: { id },
         });
 
