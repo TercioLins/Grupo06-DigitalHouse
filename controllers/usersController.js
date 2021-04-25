@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const { User, sequelize } = require("../models");
 
 const usersController = {
@@ -21,6 +22,8 @@ const usersController = {
             address_id,
         } = req.body;
 
+        const senhaCrypt = bcrypt.hashSync(senha, 10);
+
         let user = await User.create({
             name,
             cpf,
@@ -31,7 +34,7 @@ const usersController = {
             gender,
             ethnicity,
             email,
-            password,
+            password: senhaCrypt,
             address_id,
         });
         return res.status(200).json(user);
@@ -68,7 +71,7 @@ const usersController = {
 
     find: async (req, res) => {
         let { id } = req.params;
-        let user = await User.findAll({
+        let user = await User.findOne({
             where: { id },
         });
 

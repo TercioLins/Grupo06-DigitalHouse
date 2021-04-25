@@ -3,6 +3,7 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+const session = require('express-session');
 
 let indexRouter = require('./routes/index');
 let availableHoursRouter = require('./routes/availableHoursRouter');
@@ -16,6 +17,11 @@ let app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(session({
+  secret: "instagram-avanade",
+  saveUninitialized: true,
+  resave: true
+}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

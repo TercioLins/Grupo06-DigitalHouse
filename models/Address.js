@@ -1,6 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
     const Address = sequelize.define(
-        "Address", {
+        "Address",
+        {
             address: DataTypes.STRING,
             number: DataTypes.STRING,
             complement: DataTypes.INTEGER,
@@ -18,17 +19,17 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.DATE,
                 defaultValue: DataTypes.NOW,
                 name: "updated_at",
-                field: "updated_at"
-            }
-        }, {
+                field: "updated_at",
+            },
+        },
+        {
             tableName: "tbl_addresses",
-            timestamps: true
+            timestamps: true,
         }
     );
-
     Address.associate = (models) => {
-        Address.hasOne(models.User, {foreignKey: "address_id"});
-    
+        Address.hasOne(models.User, { foreignKey: "address_id" });
     };
+
     return Address;
-}
+};
