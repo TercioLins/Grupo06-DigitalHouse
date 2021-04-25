@@ -1,6 +1,7 @@
 const { Schedule, sequelize } = require("../models");
 
 const schedulesController = {
+    
     index: async (req, res) => {
         let {id} = req.params;
         let schedule = await Schedule.findOne({
@@ -10,6 +11,7 @@ const schedulesController = {
         });
         return res.status(200).json(schedule);
     },
+
     create: async (req, res) => {
         let {user_id, date_hour_id} = req.body;
         
@@ -19,6 +21,7 @@ const schedulesController = {
 
         return res.status(200).json(schedule);
     },
+
     delete: async (req, res) => {
         let {id} = req.params;
         await Schedule.destroy({where: {
@@ -26,6 +29,7 @@ const schedulesController = {
         }});
         return res.send('Agendamento cancelado!');
     },
+
     searchUserHasSchedule: async (req, res) => {
         let {id} = req.params;
         let schedule = await Schedule.findAndCountAll({

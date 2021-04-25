@@ -8,15 +8,20 @@ const availableHoursController = {
         return res.status(200).json(availableHours);
     },
     update: async (req, res) => {
-        const {id} = req.params;
-        const {date, hour, available} = req.body;
-        let availableHour = await AvailableHour.update({
-            available
-        }, {
-            where: {id}
-        });
-        return res.status(200).json(availableHour);
+        try {
+            const { id } = req.params;
+            const { available } = req.body;
+            let availableHour = await AvailableHour.update({
+                available
+            }, {
+                where: {id}
+            });
+            return res.status(200).json(availableHour);
+        } catch(error) {
+            return res.status(400).json("Horário não existe.");
+        }
     }
 }
+
 
 module.exports = availableHoursController;

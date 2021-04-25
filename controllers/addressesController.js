@@ -1,50 +1,14 @@
 const { Address, sequelize } = require("../models");
 
 const addressesController = {
-    index: async (request, response) => {
+    index: async (req, res) => {
         let addresses = await Address.findAll();
-
-        return response.status(200).json(addresses);
+        return res.status(200).json(addresses);
     },
 
-    create: async (request, response) => {
-        let {
-            address,
-            number,
-            complement,
-            zip_code,
-            neighborhood,
-            city,
-            state,
-        } = request.body;
-
-        let newAddress = await Address.create({
-            address,
-            number,
-            complement,
-            zip_code,
-            neighborhood,
-            city,
-            state,
-        });
-        return response.json(newAddress);
-    },
-
-    update: async (request, response) => {
-        let { id } = request.params;
-
-        let {
-            address,
-            number,
-            complement,
-            zip_code,
-            neighborhood,
-            city,
-            state,
-        } = request.body;
-
-        let addressUpdated = await Address.update(
-            {
+    create: async (req, res) => {
+        try {
+            let {
                 address,
                 number,
                 complement,
@@ -52,11 +16,56 @@ const addressesController = {
                 neighborhood,
                 city,
                 state,
-            }, {
-                where: { id },
-            }
-        );
-        return response.send(addressUpdated);
+            } = req.body;
+    
+            let newAddress = await Address.create({
+                address,
+                number,
+                complement,
+                zip_code,
+                neighborhood,
+                city,
+                state,
+            });
+            return res.status(200).json(newAddress);
+            
+        } catch(error) {
+            return res.status(400).json("Endereço já registrado.");
+        }
+        
+    },
+
+    update: async (req, res) => {
+        try {
+            let { id } = req.params;
+            let {
+                address,
+                number,
+                complement,
+                zip_code,
+                neighborhood,
+                city,
+                state,
+            } = req.body;
+    
+            let addressUpdated = await Address.update(
+                {
+                    address,
+                    number,
+                    complement,
+                    zip_code,
+                    neighborhood,
+                    city,
+                    state,
+                }, {
+                    where: { id },
+                }
+            );
+            return res.status(200).json(addressUpdated);
+
+        } catch(error){
+            res.status(400).json("Endereço não encontrado.");
+        }
     },
 
     delete: async (req, res) => {

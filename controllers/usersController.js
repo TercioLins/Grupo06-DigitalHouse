@@ -45,41 +45,54 @@ const usersController = {
     },
 
     update: async (req, res) => {
-        let { id } = req.params;
-        let { name, phone_number, gender, email, password } = req.body;
+        try {
+            let { id } = req.params;
+            let { name, phone_number, gender, email, password } = req.body;
+    
+            let user = await User.update(
+                {
+                    name,
+                    phone_number,
+                    gender,
+                    email,
+                    password,
+                }, {
+                    where: { id },
+                }
+            );
+            return res.status(200).json(user);
 
-        let user = await User.update(
-            {
-                name,
-                phone_number,
-                gender,
-                email,
-                password,
-            },
-            {
-                where: { id },
-            }
-        );
-
-        return res.status(200).json(user);
+        } catch(error) {
+            return res.status(400).json("CPF não encontrado.");
+        }
+        
     },
 
     delete: async (req, res) => {
-        const { id } = req.params;
-        await User.destroy({
-            where: { id },
-        });
+        try {
+            const { id } = req.params;
+            await User.destroy({
+                where: { id },
+            });
+            return res.status(200).json("Deletado com sucesso.");
 
-        return res.status(200).send("Deletado com sucesso.");
+        } catch(error) {
+            return res.status(200).json("CPF não registrado!");
+        }
     },
 
     find: async (req, res) => {
-        let { id } = req.params;
-        let user = await User.findOne({
-            where: { id },
-        });
+        try {
+            let { id } = req.params;
+            let user = await User.findOne({
+                where: { id },
+            });
+            return res.status(200).json(user);
 
-        return res.status(200).json(user);
+        } catch(error) {
+            return res.status(400).json("Usuario nao encontrado.");
+        }
+
     },
 };
 
