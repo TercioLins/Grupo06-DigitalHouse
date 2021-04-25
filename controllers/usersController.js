@@ -8,36 +8,40 @@ const usersController = {
     },
 
     create: async (req, res) => {
-        let {
-            name,
-            cpf,
-            cns,
-            mother_name,
-            birth_date,
-            phone_number,
-            gender,
-            ethnicity,
-            email,
-            password,
-            address_id,
-        } = req.body;
-
-        const senhaCrypt = bcrypt.hashSync(senha, 10);
-
-        let user = await User.create({
-            name,
-            cpf,
-            cns,
-            mother_name,
-            birth_date,
-            phone_number,
-            gender,
-            ethnicity,
-            email,
-            password: senhaCrypt,
-            address_id,
-        });
-        return res.status(200).json(user);
+        try {
+            let {
+                name,
+                cpf,
+                cns,
+                mother_name,
+                birth_date,
+                phone_number,
+                gender,
+                ethnicity,
+                email,
+                password,
+                address_id,
+            } = req.body;
+    
+            const senhaCrypt = bcrypt.hashSync(password, 10);
+    
+            let user = await User.create({
+                name,
+                cpf,
+                cns,
+                mother_name,
+                birth_date,
+                phone_number,
+                gender,
+                ethnicity,
+                email,
+                password: senhaCrypt,
+                address_id,
+            });
+            return res.status(200).json(user);
+        } catch (error) {
+            return res.status(400).json("CPF já cadastrado!");
+        }
     },
 
     update: async (req, res) => {
