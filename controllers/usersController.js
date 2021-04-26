@@ -64,8 +64,7 @@ const usersController = {
 
         } catch(error) {
             return res.status(400).json("CPF não encontrado.");
-        }
-        
+        } 
     },
 
     delete: async (req, res) => {

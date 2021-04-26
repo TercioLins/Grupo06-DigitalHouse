@@ -72,8 +72,7 @@ const phoneNumberValidator = telefone => {
         86, 87, 88, 89, 91, 92, 93, 94, 95,
         96, 97, 98, 99];
     if (codigosDDD.indexOf(parseInt(telefone.substring(0, 2))) == -1) return false;
-
-    if (new Date().getFullYear() < 2017) return true;
+    
     if (telefone.length == 10 && [2, 3, 4, 5, 7].indexOf(parseInt(telefone.substring(2, 3))) == -1) return false;
 
     return true;
