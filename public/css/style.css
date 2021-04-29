@@ -25,21 +25,10 @@ body::-webkit-scrollbar-thumb {
 
 #navbar-example2 {
   box-shadow: 0 0 5px rgb(148, 120, 230);
-  height: 70px;
-}
-
-.navbar-brand {
-  width: 200px;
-  height: 80%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .nav-link {
   color: #beaef0;
-  font-size: 20px;
-  padding: 10px;
 }
 
 .nav-link.active {
