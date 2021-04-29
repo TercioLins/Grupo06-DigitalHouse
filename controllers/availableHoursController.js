@@ -17,6 +17,7 @@ const availableHoursController = {
                 where: {id}
             });
             return res.status(200).json(availableHour);
+            
         } catch(error) {
             return res.status(400).json("Horário não existe.");
         }
