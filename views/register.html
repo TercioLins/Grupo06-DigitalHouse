@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="/public/css/modalstyle.css"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/css/style.css">
@@ -18,7 +17,7 @@
         Launch demo modal
     </button>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
@@ -28,75 +27,83 @@
                 <div class="modal-body">
                     <form class="modal-form">
                         <div class="row">
-                            <div class="form-floating col-sm-12 col-md-12 mb-3">
+                            <div class="form-floating col-sm-12 col-md-12 mb-2">
                                 <input type="text" class="form-control" id="floatingInput" placeholder="Nome">
                                 <label for="floatingInput">Nome*</label>
                             </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating col-sm-12 col-md-6 mb-2">
                                 <input type="text" class="form-control" name="CPF" id="floatingInput" placeholder="CPF">
                                 <label for="floatingInput">CPF*</label>
                             </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating col-sm-12 col-md-6 mb-2">
                                 <input type="text" class="form-control" name="email" id="floatingInput" placeholder="SUS">
                                 <label for="floatingInput">Cartão SUS*</label>
                             </div>
-                            <div class="form-floating col-sm-12 col-md-12 mb-3">
+                            <div class="form-floating col-sm-12 col-md-12 mb-2">
                                 <input type="text" class="form-control" name="NomeCompleto" id="floatingInput" placeholder="NomeCompleto">
                                 <label for="floatingInput">Nome Completo da Mãe*</label>
                             </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating col-sm-12 col-md-6 mb-2">
                                 <input type="text" class="form-control" name="Nascimento" id="floatingInput" placeholder="Nascimento">
                                 <label for="floatingInput">Nascimento*</label>
                             </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating col-sm-12 col-md-6 mb-2">
                                 <input type="text" class="form-control" name="Telefone" id="floatingInput" placeholder="Telefone">
                                 <label for="floatingInput">Telefone*</label>
                             </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-3">
-                                <input type="text" class="form-control" name="Sexo" id="floatingInput" placeholder="Sexo">
-                                <label for="floatingInput">Sexo*</label>
+                            <div class="form-floating col-sm-12 col-md-6 mb-2">
+                                <select class="form-select px-10">
+                                    <option>Sexo*</option>
+                                    <option value="1">Masculino</option>
+                                    <option value="2">Feminino</option>
+                                    <option value="3">Outros</option>
+                                </select>
                             </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-3">
-                                <input type="text" class="form-control" name="Raça" id="floatingInput" placeholder="Raça">
-                                <label for="floatingInput">Raça/Cor*</label>
+                            <div class="form-floating col-sm-12 col-md-6 mb-2">
+                                <select class="form-select">
+                                    <option>Raça/Cor*</option>
+                                    <option value="1">Masculino</option>
+                                    <option value="2">Feminino</option>
+                                    <option value="3">Outros</option>
+                                </select>
                             </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating col-sm-12 col-md-6 mb-2">
                                 <input type="text" class="form-control" name="CEP" id="floatingInput" placeholder="CEP">
                                 <label for="floatingInput">CEP*</label>
                             </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating col-sm-12 col-md-6 mb-2">
                                 <input type="text" class="form-control" name="Rua" id="floatingInput" placeholder="Rua">
                                 <label for="floatingInput">Rua*</label>
                             </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating col-sm-12 col-md-6 mb-2">
                                 <input type="text" class="form-control" name="Número" id="floatingInput" placeholder="Número">
                                 <label for="floatingInput">Número*</label>
                             </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating col-sm-12 col-md-6 mb-2">
                                 <input type="text" class="form-control" name="Bairro" id="floatingInput" placeholder="Bairro">
                                 <label for="floatingInput">Bairro*</label>
                             </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating col-sm-12 col-md-6 mb-2">
                                 <input type="text" class="form-control" name="Complemento" id="floatingInput" placeholder="Complemento">
                                 <label for="floatingInput">Complemento*</label>
                             </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating col-sm-12 col-md-6 mb-2">
                                 <input type="text" class="form-control" name="Cidade" id="floatingInput" placeholder="Cidade">
                                 <label for="floatingInput">Cidade*</label>
                             </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating col-sm-12 col-md-6 mb-2">
                                 <input type="text" class="form-control" name="EMAIL" id="floatingInput" placeholder="EMAIL">
                                 <label for="floatingInput">Email*</label>
                             </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating col-sm-12 col-md-6 mb-2">
                                 <input type="text" class="form-control" name="ConfEmail" id="floatingInput" placeholder="ConfEmail">
                                 <label for="floatingInput">Confirmação de Email*</label>
                             </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating col-sm-12 col-md-6 mb-2">
                                 <input type="text" class="form-control" name="senha" id="floatingInput" placeholder="senha">
                                 <label for="floatingInput">Senha*</label>
                             </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-3">
+                            <div class="form-floating col-sm-12 col-md-6 mb-2">
                                 <input type="text" class="form-control" name="confSenha" id="floatingInput" placeholder="ConfEmail">
                                 <label for="floatingInput">Confirmação de Senha*</label>
                             </div>
@@ -104,7 +111,6 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
                     <button type="button" class="btn btn-register">CADASTRAR</button>
                 </div>
             </div>

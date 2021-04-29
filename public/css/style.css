@@ -24,9 +24,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 #navbar-example2 {
-  align-items: center;
   box-shadow: 0 0 5px rgb(148, 120, 230);
-  padding: 0 50px;
   height: 70px;
 }
 
@@ -165,6 +163,7 @@ section.access {
   font-weight: 700;
   font-size: 30px;
   box-shadow: 7px 10px 24px rgba(0, 0, 0, 0.25);
+  transition: 0.7s;
 }
 
 .btn-cadastrar {
@@ -229,6 +228,10 @@ footer img {
   font-style: italic;
 }
 
+.modal-dialog {
+  border-radius: 30px !important;
+}
+
 .modal-content {
   background-color: #9478E6 !important;
   color: #FFFFFF;
@@ -263,7 +266,7 @@ footer img {
 .btn-register {
   background-color: #FFFFFF !important;
   color: #9478E6;
-  border: 4px solid ##FFFFFF !important;
+  border: 4px solid #FFFFFF !important;
   border-radius: 4px;
   font-weight: 530;
 }
@@ -297,7 +300,23 @@ footer img {
 }
 
 .form-floating label {
-  padding: 10px !important;
+  margin-left: 5px !important;
+  font-size: 20px;
+}
+
+.form-select {
+  background: transparent;
+  color: white;
+  border: none !important;
+  border-bottom: 2.5px solid white !important;
+  border-radius: 0;
+  font-size: 20px;
+  padding: 15px 5px 10px !important;
+}
+
+option {
+  background-color: #BEAEF0;
+  color: white;
 }
 
 .modal-header {
