@@ -13,14 +13,14 @@
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" tabindex="0">
-    <nav id="navbar-example2" class="navbar navbar-expand-lg fixed-top navbar-light bg-white">
-        <div class="container-fluid justify-content-between mx-5">
-            <a class="navbar-brand img-fluid" href="#"><img src="../public/images/LOGO.png" alt="logo" width="150"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <nav id="navbar-example2" class="navbar navbar-expand-md fixed-top navbar-light bg-white">
+        <div class="container-fluid justify-content-between mx-10">
+            <a class="navbar-brand img-fluid mx-1" href="#"><img src="../public/images/LOGO.png" alt="logo" width="150"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-lg-end" id="navbarTogglerDemo01">
-                <ul class="nav nav-pills">
+            <div class="collapse navbar-collapse justify-content-end flex-grow-0" id="navbarTogglerDemo01">
+                <ul class="nav nav-pills justify-content-end">
                     <li class="nav-item">
                         <a class="nav-link text-center fs-5" href="#carousel">INÍCIO</a>
                     </li>
@@ -38,7 +38,7 @@
         </div>
     </nav>
 
-    <section class="carousel" id="carousel">
+    <section class="carousel d-flex justify-content-center align-items-center w-100" id="carousel">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -62,18 +62,18 @@
         </div>
     </section>
 
-    <section class="informations" id="informations">
-        <div class="informations-img"></div>
-        <div class="container-info">
-            <div class="box-info1">
+    <section class="informations container-fluid d-flex justify-content-around align-items-end" id="informations">
+        <img class="img-fluid mb-3" src="../public/images/informations-img.png" alt="">
+        <div class="d-flex flex-column bd-highlight mt-5">
+            <div class="box-info1 container-fluid w-75 my-3">
                 <div class="bola1"><h1>1</h1></div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore deleniti ratione iure, cupiditate nisi, facilis saepe voluptas nostrum dolorum est aperiam rerum voluptatem facere nihil corporis eligendi temporibus tenetur consectetur.</p>
             </div>
-            <div class="box-info2">
+            <div class="box-info2 container-fluid w-75 my-3">
                 <div class="bola2"><h1>2</h1></div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore deleniti ratione iure, cupiditate nisi, facilis saepe voluptas nostrum dolorum est aperiam rerum voluptatem facere nihil corporis eligendi temporibus tenetur consectetur.</p>
             </div>
-            <div class="box-info1">
+            <div class="box-info1 container-fluid w-75 my-3">
                 <div class="bola1"><h1>3</h1></div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore deleniti ratione iure, cupiditate nisi, facilis saepe voluptas nostrum dolorum est aperiam rerum voluptatem facere nihil corporis eligendi temporibus tenetur consectetur.</p>
             </div>

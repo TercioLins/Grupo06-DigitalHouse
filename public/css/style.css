@@ -51,12 +51,7 @@ body::-webkit-scrollbar-thumb {
 
 section {
   height: 700px;
-}
-
-section.carousel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  max-height: 700px;
 }
 
 #carouselExampleIndicators {
@@ -68,32 +63,7 @@ section.carousel {
 }
 
 section.informations {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   background-color: #9478E6;
-  padding: 50px;
-}
-
-section.informations .informations-img {
-  background-image: url("/public/images/informations-img.png");
-  width: 600px;
-  height: 500px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  margin-top: 50px;
-}
-
-.container-info {
-  display: flex;
-  flex-direction: column;
-  margin-top: 100px;
-}
-
-.box-info1, .box-info2 {
-  width: 600px;
-  height: 150px;
-  margin: 25px 0;
 }
 
 .box-info1 {
