@@ -25,21 +25,10 @@ body::-webkit-scrollbar-thumb {
 
 #navbar-example2 {
     box-shadow: 0 0 5px rgb(148, 120, 230);
-    height: 70px;
-}
-
-.navbar-brand {
-    width: 200px;
-    height: 80%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
 .nav-link {
     color: #beaef0;
-    font-size: 20px;
-    padding: 10px;
 }
 
 .nav-link.active {
@@ -62,12 +51,7 @@ body::-webkit-scrollbar-thumb {
 
 section {
     height: 700px;
-}
-
-section.carousel {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    max-height: 700px;
 }
 
 #carouselExampleIndicators {
@@ -79,33 +63,7 @@ section.carousel {
 }
 
 section.informations {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     background-color: #9478E6;
-    padding: 50px;
-}
-
-section.informations .informations-img {
-    background-image: url("/public/images/informations-img.png");
-    width: 600px;
-    height: 500px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    margin-top: 50px;
-}
-
-.container-info {
-    display: flex;
-    flex-direction: column;
-    margin-top: 100px;
-}
-
-.box-info1,
-.box-info2 {
-    width: 600px;
-    height: 150px;
-    margin: 25px 0;
 }
 
 .box-info1 {
@@ -238,7 +196,6 @@ footer img {
 .modal-content {
     background-color: #9478E6 !important;
     color: #FFFFFF;
-    padding: 30px;
 }
 
 .modal-content h5 {
@@ -246,12 +203,6 @@ footer img {
     color: #FFFFFF;
     font-weight: 600;
     border-bottom: 4px solid white !important;
-}
-
-.modal-body-login {
-    font-size: 35px;
-    color: #FFFFFF;
-    font-weight: 600;
 }
 
 .btn-c {
@@ -335,14 +286,4 @@ option {
 
 .modal-footer {
     border: none;
-}
-
-.recovery {
-    font-size: 20px;
-    padding: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.modal {
-    top: auto;
 }
