@@ -91,8 +91,25 @@ const usersController = {
         } catch(error) {
             return res.status(400).json("Usuario nao encontrado.");
         }
-
     },
+
+    login: async (req, res) => {
+        try {
+            let {email , password} = req.body; 
+            let passCrypt = bcrypt.hashSync(password, 10);
+    
+            let user = await User.findOne({
+                where: { email },
+            });
+
+            return (user.email === email && user.password === passCrypt) ? res.status(200).json({message: "Ok"}) : res.status(401).json({error: "Login invalido!" });
+
+        } catch {
+            return res.status(401).json({
+                error: new Error("Invalid Request!")
+            });
+        }
+    }
 };
 
 module.exports = usersController;
