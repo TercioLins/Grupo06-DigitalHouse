@@ -6,10 +6,16 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
+<<<<<<< HEAD
     "express": "^4.17.1",
+=======
+    "express": "^4.16.4",
+    "express-session": "^1.17.1",
+>>>>>>> 5077fa2bc7f43e93bd85f7420b51f572d2c30cbc
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "mysql2": "^2.2.5",
@@ -22,7 +28,10 @@
     "type": "git",
     "url": "git+https://github.com/TercioLins/Grupo06-DigitalHouse.git"
   },
+<<<<<<< HEAD
   "keywords": [],
+=======
+>>>>>>> 5077fa2bc7f43e93bd85f7420b51f572d2c30cbc
   "author": "",
   "license": "ISC",
   "bugs": {
