@@ -91,7 +91,7 @@ const usersController = {
         } catch(error) {
             return res.status(400).json("Usuario nao encontrado.");
         }
-
+         
     },
 };
 
