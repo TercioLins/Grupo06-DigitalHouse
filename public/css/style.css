@@ -261,6 +261,10 @@ footer img {
     color: white;
 }
 
+.form-control:disabled {
+    background-color: transparent;
+}
+
 .form-floating label {
     margin-left: 5px !important;
     font-size: 20px;
@@ -274,6 +278,14 @@ footer img {
     border-radius: 0;
     font-size: 20px;
     padding: 15px 5px 10px !important;
+}
+
+.form-select:focus {
+    box-shadow: none;
+}
+
+button:enabled {
+    box-shadow: none !important;
 }
 
 option {
