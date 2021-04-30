@@ -238,6 +238,7 @@ footer img {
 .modal-content {
     background-color: #9478E6 !important;
     color: #FFFFFF;
+    padding: 30px;
 }
 
 .modal-content h5 {
@@ -340,4 +341,8 @@ option {
     font-size: 20px;
     padding: 18px;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.modal {
+    top: auto;
 }
