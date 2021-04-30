@@ -196,6 +196,7 @@ footer img {
 .modal-content {
     background-color: #9478E6 !important;
     color: #FFFFFF;
+    padding: 30px;
 }
 
 .modal-content h5 {
@@ -286,4 +287,13 @@ option {
 
 .modal-footer {
     border: none;
+}
+
+.recovery {
+    font-size: 20px;
+    padding: 18px;
+}
+
+.modal {
+    top: auto;
 }
