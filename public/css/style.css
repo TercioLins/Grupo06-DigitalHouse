@@ -267,7 +267,7 @@ footer img {
 }
 
 .form-select {
-    background: transparent;
+    background-color: transparent;
     color: white;
     border: none !important;
     border-bottom: 2.5px solid white !important;
@@ -281,19 +281,11 @@ option {
     color: white;
 }
 
-.modal-header {
-    border: none;
-}
-
-.modal-footer {
+.modal-header, .modal-footer {
     border: none;
 }
 
 .recovery {
     font-size: 20px;
     padding: 18px;
-}
-
-.modal {
-    top: auto;
 }
