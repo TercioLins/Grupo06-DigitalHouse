@@ -103,13 +103,14 @@ const usersController = {
                 where: { email },
             });
 
-            if(user === null) 
+            if(!user) 
                 return res.status(401).json({error: "Usuario invalido!" });
 
             let pCheck = bcrypt.compareSync(password, user.password);
 
-            return (user.email === email && pCheck) ? 
-                res.status(200).json({message: "Ok"}) : 
+            if (user.email === email && pCheck)
+                res.status(200).json({message: "Ok"});
+            else
                 res.status(401).json({error: "Login invalido!" });
             
         } catch {
@@ -127,7 +128,7 @@ const usersController = {
                 where: { cpf, email },
             });
             
-            if(user === null) 
+            if(!user) 
                 return res.status(401).json({error: "Usuario invalido!" });
 
             else {
@@ -145,8 +146,9 @@ const usersController = {
                     }
                 );
 
-                return (user.email === email && cpf === user.cpf) ? 
-                    res.status(200).json({message: `Your new password is ${newPassword}`}) : // manda mensagem por email E com uma nova senha. =)
+                if (user.email === email && cpf === user.cpf)
+                    res.status(200).json({message: `Your new password is ${newPassword}`});
+                else
                     res.status(401).json({error: "Usuario inexistente!" });
             }
         
