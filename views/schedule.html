@@ -1,163 +1,62 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<style>
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th, td, tr {
-  text-align: center;
-  padding: 8px;
-}
-
-
-</style>
-</head>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <link rel="stylesheet" href="../public/css/style.css">
-    <title>MODAL</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <link rel="stylesheet" href="../public/css/style.css">
+  <title>MODAL</title>
 </head>
 
-<body>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-register" id="exampleModalLabel"></h5>
-                    <button type="button" class="btn-c" data-bs-dismiss="modal">X</button>
-                </div>
-                <div class="modal-body">
-                    <!-- <form class="modal-form"> -->
-                        <div class="row">
-                            <div>
-                                <table>
-                                    <tr>
-                                      <th>Segunda</th>
-                                      <th>Terça</th>
-                                      <th>Quarta</th>
-                                      <th>Quinta</th>
-                                      <th>Sexta</th>
-                                      <th>Sábado</th>
-                                      <th>Domingo</th>      
-                                    </tr>
-                                    <tr>
-                                      <td>8:00</td>
-                                      <td>8:00</td>
-                                      <td>8:00</td>
-                                      <td>8:00</td>
-                                      <td>8:00</td>
-                                      <td>8:00</td>
-                                      <td>8:00</td>
-                                    </tr>
-                                    <tr>
-                                      <td>9:00</td>
-                                      <td>9:00</td>
-                                      <td>9:00</td>
-                                      <td>9:00</td>
-                                      <td>9:00</td>
-                                      <td>9:00</td>
-                                      <td>9:00</td>
-                                    </tr>
-                                    <tr>
-                                      <td>10:00</td>
-                                      <td>10:00</td>
-                                      <td>10:00</td>
-                                      <td>10:00</td>
-                                      <td>10:00</td>
-                                      <td>10:00</td>
-                                      <td>10:00</td>
-                                    </tr>
-                                    <tr>
-                                      <td>11:00</td>
-                                      <td>11:00</td>
-                                      <td>11:00</td>
-                                      <td>11:00</td>
-                                      <td>11:00</td>
-                                      <td>11:00</td>
-                                      <td>11:00</td>
-                                    </tr>
-                                    <tr>
-                                      <td>12:00</td>
-                                      <td>12:00</td>
-                                      <td>12:00</td>
-                                      <td>12:00</td>
-                                      <td>12:00</td>
-                                      <td>12:00</td>
-                                      <td>12:00</td>
-                                     </tr>
-                                    <tr>
-                                      <td>13:00</td>
-                                      <td>13:00</td>
-                                      <td>13:00</td>
-                                      <td>13:00</td>
-                                      <td>13:00</td>
-                                      <td>13:00</td>
-                                      <td>13:00</td>
-                                    </tr>
-                                    <tr>
-                                      <td>14:00</td>
-                                      <td>14:00</td>
-                                      <td>14:00</td>
-                                      <td>14:00</td>
-                                      <td>14:00</td>
-                                      <td>14:00</td>
-                                      <td>14:00</td>
-                                    </tr>
-                                    <tr>
-                                      <td>15:00</td>
-                                      <td>15:00</td>
-                                      <td>15:00</td>
-                                      <td>15:00</td>
-                                      <td>15:00</td>
-                                      <td>15:00</td>
-                                      <td>15:00</td>
-                                    </tr>
-                                    <tr>
-                                      <td>16:00</td>
-                                      <td>16:00</td>
-                                      <td>16:00</td>
-                                      <td>16:00</td>
-                                      <td>16:00</td>
-                                      <td>16:00</td>
-                                      <td>16:00</td>
-                                    </tr>
-                                    <tr>
-                                       <td>17:00</td>
-                                       <td>17:00</td>
-                                       <td>17:00</td>
-                                       <td>17:00</td>
-                                       <td>17:00</td>
-                                       <td>17:00</td>
-                                       <td>17:00</td>
-                                    </tr>     
-                                  </table>
-                            </div>
-                            
-                            
-                        </div>
-                    <!-- </form> -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-register">AGENDAR</button>
-                </div>
-            </div>
+<body class="d-flex align-items-center">
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-register" id="exampleModalLabel">Agendamento</h5>
+          <button type="button" class="btn-c" data-bs-dismiss="modal">X</button>
         </div>
+        <div class="modal-body">
+          <div class="row d-flex justify-content-center">
+            <div class="container d-flex justify-content-start m-3">
+              <select class="form-select m-2" aria-label="Default select example">
+                <option selected>Dia</option>
+                <option value="1">30/04 (Sexta)</option>
+                <option value="2">01/05 (Sábado)</option>
+                <option value="3">02/05 (Domingo)</option>
+                <option value="3">02/05 (Domingo)</option>
+                <option value="3">02/05 (Domingo)</option>
+                <option value="3">02/05 (Domingo)</option>
+              </select>
+
+              <select class="form-select m-2" aria-label="Default select example">
+                <option selected>Hora</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+          <!-- </form> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-register">AGENDAR</button>
+        </div>
+      </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-        crossorigin="anonymous"></script>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+    crossorigin="anonymous"></script>
 </body>
 
 

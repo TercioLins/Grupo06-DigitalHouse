@@ -261,13 +261,17 @@ footer img {
     color: white;
 }
 
+.form-control:disabled {
+    background-color: transparent;
+}
+
 .form-floating label {
     margin-left: 5px !important;
     font-size: 20px;
 }
 
 .form-select {
-    background: transparent;
+    background-color: transparent;
     color: white;
     border: none !important;
     border-bottom: 2.5px solid white !important;
@@ -276,24 +280,24 @@ footer img {
     padding: 15px 5px 10px !important;
 }
 
+.form-select:focus {
+    box-shadow: none;
+}
+
+button:enabled {
+    box-shadow: none !important;
+}
+
 option {
     background-color: #BEAEF0;
     color: white;
 }
 
-.modal-header {
-    border: none;
-}
-
-.modal-footer {
+.modal-header, .modal-footer {
     border: none;
 }
 
 .recovery {
     font-size: 20px;
     padding: 18px;
-}
-
-.modal {
-    top: auto;
 }
