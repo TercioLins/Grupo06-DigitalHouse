@@ -40,7 +40,7 @@ const usersController = {
             });
             return res.status(200).json(user);
         } catch (error) {
-            return res.status(400).json("CPF já cadastrado!");
+            return res.status(400).json(error);
         }
     },
 
@@ -96,14 +96,15 @@ const usersController = {
     login: async (req, res) => {
         try {
             let {email , password} = req.body; 
-            let passCrypt = bcrypt.hashSync(password, 10);
-    
+            
             let user = await User.findOne({
                 where: { email },
             });
 
-            return (user.email === email && user.password === passCrypt) ? res.status(200).json({message: "Ok"}) : res.status(401).json({error: "Login invalido!" });
+            let pCheck = bcrypt.compareSync(password, user.password);
 
+            return (user.email === email && pCheck) ? res.status(200).json({message: "Ok"}) : res.status(401).json({error: "Login invalido!" });
+            
         } catch {
             return res.status(401).json({
                 error: new Error("Invalid Request!")
