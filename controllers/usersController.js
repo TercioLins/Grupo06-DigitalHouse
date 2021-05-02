@@ -1,6 +1,5 @@
 const bcrypt = require('bcryptjs');
 const passGenerator = require('generate-password');
-const mail = require('nodemailer');
 const { User, sequelize } = require("../models");
 
 const usersController = {
@@ -11,7 +10,7 @@ const usersController = {
 
     create: async (req, res) => {
         try {
-            let {
+            const {
                 name,
                 cpf,
                 cns,
@@ -27,7 +26,7 @@ const usersController = {
     
             const senhaCrypt = bcrypt.hashSync(password, 10);
     
-            let user = await User.create({
+            const user = await User.create({
                 name,
                 cpf,
                 cns,
@@ -48,8 +47,8 @@ const usersController = {
 
     update: async (req, res) => {
         try {
-            let { id } = req.params;
-            let { name, phone_number, gender, email, password } = req.body;
+            const { id } = req.params;
+            const { name, phone_number, gender, email, password } = req.body;
     
             let user = await User.update(
                 {
@@ -84,8 +83,8 @@ const usersController = {
 
     find: async (req, res) => {
         try {
-            let { id } = req.params;
-            let user = await User.findOne({
+            const { id } = req.params;
+            const user = await User.findOne({
                 where: { id },
             });
             return res.status(200).json(user);
@@ -97,18 +96,18 @@ const usersController = {
 
     login: async (req, res) => {
         try {
-            let {email , password} = req.body; 
+            const {email , password} = req.body; 
             
-            let user = await User.findOne({
+            const user = await User.findOne({
                 where: { email },
             });
 
             if(!user) 
                 return res.status(401).json({error: "Usuario invalido!" });
 
-            let pCheck = bcrypt.compareSync(password, user.password);
+                const pCheck = bcrypt.compareSync(password, user.password);
 
-            if (user.email === email && pCheck)
+            if(user.email === email && pCheck)
                 res.status(200).json({message: "Ok"});
             else
                 res.status(401).json({error: "Login invalido!" });
@@ -122,9 +121,9 @@ const usersController = {
 
     forgotPassword: async (req, res) => {
         try {
-            let {email, cpf} = req.body; 
+            const {email, cpf} = req.body; 
             
-            let user = await User.findOne({
+            const user = await User.findOne({
                 where: { cpf, email },
             });
             
@@ -132,12 +131,12 @@ const usersController = {
                 return res.status(401).json({error: "Usuario invalido!" });
 
             else {
-                let newPassword = passGenerator.generate({
+                const newPassword = passGenerator.generate({
                     length:10,
                     uppercase:true
                 });
 
-                let encryptNewPassword = bcrypt.hashSync(newPassword, 10);
+                const encryptNewPassword = bcrypt.hashSync(newPassword, 10);
 
                 await User.update({
                         password: encryptNewPassword
@@ -146,9 +145,9 @@ const usersController = {
                     }
                 );
 
-                if (user.email === email && cpf === user.cpf)
+                if(user.email === email && cpf === user.cpf) 
                     res.status(200).json({message: `Your new password is ${newPassword}`});
-                else
+                else 
                     res.status(401).json({error: "Usuario inexistente!" });
             }
         
