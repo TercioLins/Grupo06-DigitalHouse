@@ -1,4 +1,6 @@
 const bcrypt = require('bcryptjs');
+const passGenerator = require('generate-password');
+const mail = require('nodemailer');
 const { User, sequelize } = require("../models");
 
 const usersController = {
@@ -101,10 +103,53 @@ const usersController = {
                 where: { email },
             });
 
+            if(user === null) 
+                return res.status(401).json({error: "Usuario invalido!" });
+
             let pCheck = bcrypt.compareSync(password, user.password);
 
-            return (user.email === email && pCheck) ? res.status(200).json({message: "Ok"}) : res.status(401).json({error: "Login invalido!" });
+            return (user.email === email && pCheck) ? 
+                res.status(200).json({message: "Ok"}) : 
+                res.status(401).json({error: "Login invalido!" });
             
+        } catch {
+            return res.status(401).json({
+                error: new Error("Invalid Request!")
+            });
+        }
+    },
+
+    forgotPassword: async (req, res) => {
+        try {
+            let {email, cpf} = req.body; 
+            
+            let user = await User.findOne({
+                where: { cpf, email },
+            });
+            
+            if(user === null) 
+                return res.status(401).json({error: "Usuario invalido!" });
+
+            else {
+                let newPassword = passGenerator.generate({
+                    length:10,
+                    uppercase:true
+                });
+
+                let encryptNewPassword = bcrypt.hashSync(newPassword, 10);
+
+                await User.update({
+                        password: encryptNewPassword
+                    }, {
+                        where: { id: user.id },
+                    }
+                );
+
+                return (user.email === email && cpf === user.cpf) ? 
+                    res.status(200).json({message: `Your new password is ${newPassword}`}) : // manda mensagem por email E com uma nova senha. =)
+                    res.status(401).json({error: "Usuario inexistente!" });
+            }
+        
         } catch {
             return res.status(401).json({
                 error: new Error("Invalid Request!")
