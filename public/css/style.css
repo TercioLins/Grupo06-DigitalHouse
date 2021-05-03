@@ -293,11 +293,24 @@ option {
     color: white;
 }
 
-.modal-header, .modal-footer {
+.modal-header,
+.modal-footer {
     border: none;
 }
 
 .recovery {
     font-size: 20px;
     padding: 18px;
+}
+
+.btn-info {
+    background-color: #9478E6;
+    border: none;
+    color: #FFFF;
+}
+
+.btn-info:hover {
+    background-color: #9478E6;
+    border: 8px solid #9478e6;
+    color: #FFFFFF;
 }

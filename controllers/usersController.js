@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const passGenerator = require('generate-password');
-const { User, sequelize } = require("../models");
+const { User, Schedule, sequelize } = require("../models");
 
 const usersController = {
     index: async (req, res) => {
@@ -97,25 +97,28 @@ const usersController = {
     login: async (req, res) => {
         try {
             const {cpf, password} = req.body; 
-            
             const user = await User.findOne({
-                where: { cpf },
+                where: { cpf }
             });
-
+            const schedule = await Schedule.findOne({
+                where: {user_id: user.id}
+            });
+    
             if(!user) 
-                return res.status(401).json({erro: "Usuário invalido!" });
-
+                return res.status(401).json({message: "Usuario não cadastrado!" });
+    
             const pCheck = bcrypt.compareSync(password, user.password);
+    
+            if (pCheck && user.cpf === cpf) {
+                if (schedule)
+                    return res.status(200).json({message: "Com agendamento"});
+                else 
+                    return res.status(200).json({message: "Sem agendamento"});
+            } else
+                return res.status(401).json({message: "Senha incorreta!"});
 
-            if(pCheck && user.cpf === cpf)
-                res.status(200).json({message: "Ok"});
-            else
-                res.status(401).json({error: "Login invalido!" });
-            
         } catch {
-            return res.status(401).json({
-                error: new Error("Invalid Request!")
-            });
+            return res.status(401).json({error: "Invalid Request!"});
         }
     },
 
@@ -146,9 +149,9 @@ const usersController = {
                 );
 
                 if(user.email === email && cpf === user.cpf) 
-                    res.status(200).json({message: `Your new password is ${newPassword}`});
+                    return res.status(200).json({message: `Your new password is ${newPassword}`});
                 else 
-                    res.status(401).json({error: "Usuario inexistente!" });
+                    return res.status(401).json({error: "Usuario inexistente!" });
             }
         
         } catch {

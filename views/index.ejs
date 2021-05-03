@@ -222,6 +222,9 @@
                             <input type="password" class="form-control" name="password" id="password" placeholder="Senha">
                             <label for="floatingInput">SENHA:*</label>
                         </div>
+                        <% if (message) { %>
+                            <div class="alert <%= messageClass %>" role="alert"><%= message %></div>
+                         <% } %>
 
                 </div>
                 <div class="modal-footer">
