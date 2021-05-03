@@ -211,25 +211,21 @@
                 </div>
                 <p><span class="recovery"> Informe seus dados:</span></p>
                 <div class="modal-body-login">
-                    <form class="modal-form">
+                    <form class="modal-form" action="/users/login" method="POST">
                         <div class="row">
                         </div>
                         <div class="form-floating col-sm-12 col-md-12 mb-2">
-                            <input type="text" class="form-control" name="CPF" id="floatingInput" placeholder="Cpf">
+                            <input type="text" class="form-control" name="cpf" id="cpf" placeholder="Cpf">
                             <label for="floatingInput">CPF(APENAS NÚMEROS):*</label>
                         </div>
                         <div class="form-floating col-sm-12 col-md-12 mb-2">
-                            <input type="text" class="form-control" name="CPF" id="floatingInput" placeholder="Cpf">
-                            <label for="floatingInput">EMAIL:*</label>
-                        </div>
-                        <div class="form-floating col-sm-12 col-md-12 mb-2">
-                            <input type="text" class="form-control" name="senha" id="floatingInput" placeholder="Senha">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Senha">
                             <label for="floatingInput">SENHA:*</label>
                         </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-register">ENTRAR</button>
+                    <button type="submit" class="btn btn-register">ENTRAR</button>
                 </div>
                 </form>
             </div>

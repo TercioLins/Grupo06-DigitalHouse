@@ -96,18 +96,18 @@ const usersController = {
 
     login: async (req, res) => {
         try {
-            const {cpf, email , password} = req.body; 
+            const {cpf, password} = req.body; 
             
             const user = await User.findOne({
-                where: { cpf, email },
+                where: { cpf },
             });
 
             if(!user) 
-                return res.status(401).json({error: "Usuario invalido!" });
+                return res.status(401).json({erro: "Usuário invalido!" });
 
             const pCheck = bcrypt.compareSync(password, user.password);
 
-            if(user.email === email && pCheck && user.cpf === cpf)
+            if(pCheck && user.cpf === cpf)
                 res.status(200).json({message: "Ok"});
             else
                 res.status(401).json({error: "Login invalido!" });
