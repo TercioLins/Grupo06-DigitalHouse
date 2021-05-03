@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const passGenerator = require('generate-password');
-const { User, sequelize } = require("../models");
+const { User, Schedule, sequelize } = require("../models");
 
 const usersController = {
     index: async (req, res) => {
@@ -97,9 +97,11 @@ const usersController = {
     login: async (req, res) => {
         try {
             const {cpf, password} = req.body; 
-
             const user = await User.findOne({
-                where: { cpf },
+                where: { cpf }
+            });
+            const schedule = await Schedule.findOne({
+                where: {user_id: user.id}
             });
     
             if(!user) 
@@ -107,9 +109,12 @@ const usersController = {
     
             const pCheck = bcrypt.compareSync(password, user.password);
     
-            if(pCheck && user.cpf === cpf)
-                return res.status(200).json({message: "Ok"});
-            else
+            if (pCheck && user.cpf === cpf) {
+                if (schedule)
+                    return res.status(200).json({message: "Com agendamento"});
+                else 
+                    return res.status(200).json({message: "Sem agendamento"});
+            } else
                 return res.status(401).json({message: "Senha incorreta!"});
 
         } catch {
