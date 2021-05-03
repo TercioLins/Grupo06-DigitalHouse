@@ -1,13 +1,10 @@
 const { User } = require("../models");
 
-module.exports = async (req, res, next) => {
+module.exports = (req, res, next) => {
     const { cpf, password } = req.body;
 
     if (!password || !cpf)
-        return res.render("index", {
-            message: "Usuário não registrado",
-            messageClass: "alert-danger alert-dismissible fade show"
-        });
+        return res.send("Usuário não registrado");
 
     else if (!cpfFormatValidate(cpf)) 
         return res.status(400).json({ erro: "CPF inválido!"});
