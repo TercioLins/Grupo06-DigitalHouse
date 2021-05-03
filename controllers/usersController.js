@@ -108,9 +108,9 @@ const usersController = {
             const pCheck = bcrypt.compareSync(password, user.password);
 
             if(user.email === email && pCheck && user.cpf === cpf)
-                res.status(200).json({message: "Ok"});
+                return res.status(200).json({message: "Ok"});
             else
-                res.status(401).json({error: "Login invalido!" });
+                return res.status(401).json({error: "Login invalido!" });
             
         } catch {
             return res.status(401).json({
@@ -146,9 +146,9 @@ const usersController = {
                 );
 
                 if(user.email === email && cpf === user.cpf) 
-                    res.status(200).json({message: `Your new password is ${newPassword}`});
+                    return res.status(200).json({message: `Your new password is ${newPassword}`});
                 else 
-                    res.status(401).json({error: "Usuario inexistente!" });
+                    return res.status(401).json({error: "Usuario inexistente!" });
             }
         
         } catch {
