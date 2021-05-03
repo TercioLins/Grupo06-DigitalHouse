@@ -134,7 +134,7 @@ const usersController = {
                     uppercase:true
                 });
 
-                const encryptNewPassword = bcrypt.hashSync(newPassword, 10);
+                const encryptNewPassword = bcrypt.hashsync(newpassword, 10);
 
                 await User.update({
                         password: encryptNewPassword
