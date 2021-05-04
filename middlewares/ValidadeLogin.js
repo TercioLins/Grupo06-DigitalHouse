@@ -3,6 +3,11 @@ const { User } = require("../models");
 module.exports = (req, res, next) => {
     const { cpf, password } = req.body;
 
+    if (!cpf || !password)
+        return res.render("index", {
+            message: "Usuario",
+        })
+
     if (!cpfFormatValidate(cpf)) 
         return res.status(400).json({ erro: "CPF inválido!"});
  

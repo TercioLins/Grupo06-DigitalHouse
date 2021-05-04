@@ -189,17 +189,14 @@ footer img {
     font-style: italic;
 }
 
-.modal-dialog {
-    border-radius: 30px !important;
-}
-
-.modal-content {
+.container-login {
     background-color: #9478E6 !important;
     color: #FFFFFF;
     padding: 30px;
+    border-radius: 30px !important;
 }
 
-.modal-content h5 {
+.container-login h5 {
     font-size: 35px;
     color: #FFFFFF;
     font-weight: 600;

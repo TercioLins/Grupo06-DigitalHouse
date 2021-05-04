@@ -3,9 +3,8 @@ const passGenerator = require('generate-password');
 const { User, Schedule, sequelize } = require("../models");
 
 const usersController = {
-    index: async (req, res) => {
-        let user = await User.findAll();
-        return res.status(200).json(user);
+    index: (req, res) => {
+        return res.render('login');
     },
 
     create: async (req, res) => {
@@ -114,8 +113,8 @@ const usersController = {
                 where: { cpf }
             });
 
-            if(!user) 
-                return res.status(401).json({message: "Usuario não cadastrado!" });
+            if(!cpf || !password) 
+            return res.status(400).json("Usuario nao encontrado.");
     
             const schedule = await Schedule.findOne({
                 where: {user_id: user.id}
