@@ -10,6 +10,10 @@ const usersController = {
         });
     },
 
+    register: (req, res) => {
+        return res.render("register");
+    },
+
     create: async (req, res) => {
         try {
             const {
@@ -28,7 +32,6 @@ const usersController = {
             
             if (!name||!cpf||!cns||!mother_name||!birth_date|| !phone_number||!gender||!ethnicity||!email||!password||!address_id)
                 return res.status(401).json({message: "Algum campo nao foi preenchido."})
-                
 
             const senhaCrypt = bcrypt.hashSync(password, 10);
     
@@ -108,44 +111,48 @@ const usersController = {
         }
     },
 
-    login: async (req, res) => {
+    loginAuth: async (req, res) => {
         try {
             const {cpf, password} = req.body; 
                
             const user = await User.findOne({
                 where: { cpf }
-            });
-
-            if (!cpf || !password) {
-                return res.render("login", {
-                    message: "Preencha todos os campos",
-                });
-            }
+            }); 
 
             if(!user) 
                 return res.render("Usuario nao encontrado.");
     
-            const schedule = await Schedule.findOne({
-                where: {user_id: user.id}
-            });
-            
-            if(!schedule)
-                return res.render("index", {message:"Horario nao disponivel."});
- 
-            const pCheck = bcrypt.compareSync(password, user.password);
-    
-            if (pCheck && user.cpf === cpf) {
+            if (bcrypt.compareSync(password, user.password) && user.cpf === cpf) {
                 req.session.usuarioLogado = user;
-                if (schedule)
-                    return res.render("index", {message: "Com agendamento"});
-                else 
-                    return res.render("index", {message: "Sem agendamento"});
+                return res.redirect("/userProfile");
+
             } else
-                return res.render("login", {message: "Senha incorreta!"});
+                return res.redirect("index", {message: "Senha incorreta!"});
 
         } catch {
-            return res.render({message: "Erro interno"});
+            return res.redirect("index", {message: "Um erro ocorreu no login!"});
         }
+    },
+
+    LoadUserPage: async (req, res) => {
+        const { id } = req.session.usuarioLogado;
+
+        const user = await User.findByPk(id);
+
+        if(!user)
+            return res.status(400).send({message:"Usuario inexistente!"});
+
+        const schedule = await Schedule.findOne({
+            where: {user_id: user.id} 
+        });
+        
+        // sem agendamento -> userSchedule
+        // com agendamento -> constultSchedule
+        if (schedule)
+            return res.render("constultSchedule", {message: "Com agendamento"});
+
+        else 
+            return res.render("userSchedule", {message: "Sem agendamento"});
     },
 
     forgotPassword: async (req, res) => {
