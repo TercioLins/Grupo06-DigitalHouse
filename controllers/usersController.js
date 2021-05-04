@@ -19,11 +19,11 @@ const usersController = {
     },
 
     userWithSchedule: (req, res) => {
-        return res.render("userSchedule");
+        return res.render("userschedule");
     },
 
     userWithoutSchedule: (req, res) => {
-        return res.render("userschedule");
+        return res.render("consultschedule");
     },
 
     create: async (req, res) => {
@@ -139,17 +139,19 @@ const usersController = {
             
             if (bcrypt.compareSync(password, user.password) && user.cpf === cpf) {
                 req.session.usuarioLogado = user;
-                return res.redirect(`/users/userprofile`);
+                return res.redirect("/users/userprofile");
 
             } else
-                return res.status(400).json(user)
+                return res.render("login", {
+                    message:"Senha incorreta!"
+                });
 
     },
 
     LoadUserPage: async (req, res) => {
         const { id } = req.session.usuarioLogado;
 
-        const user = await await User.findOne({
+        const user = await User.findOne({
             where: { id }
         }); 
 
@@ -166,7 +168,7 @@ const usersController = {
             return res.redirect("/users/userWithSchedule");
 
         else 
-            return res.redirect("/users/userWithSchedule");
+            return res.redirect("/users/userWithoutSchedule");
     },
 
     forgotPassword: async (req, res) => {

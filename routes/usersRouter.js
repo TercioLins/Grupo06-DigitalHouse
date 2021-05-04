@@ -9,7 +9,7 @@ const ValidadeForgotPassword = require('../middlewares/ValidadeForgotPassword');
 /* GET users listing. */
 router.get("/", usersController.login);
 router.get("/register", usersController.register);
-router.get("/userprofile", usersController.LoadUserPage);
+router.get("/userprofile", ValidadeLogin,usersController.LoadUserPage);
 router.get("/forgotpassword", usersController.forgetPasswordpage);
 router.get("/userWithSchedule", usersController.userWithSchedule);
 router.get("/userWithoutSchedule", usersController.userWithoutSchedule);
