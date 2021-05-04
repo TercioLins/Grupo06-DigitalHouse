@@ -95,11 +95,10 @@ const usersController = {
     find: async (req, res) => {
         try {
             const { id } = req.params;
-            
             const user = await User.findOne({
                 where: { id },
             });
-
+            
             return res.status(200).json(user);
 
         } catch(error) {
@@ -131,7 +130,7 @@ const usersController = {
                 if (schedule)
                     return res.status(200).json({message: "Com agendamento"});
                 else 
-                    return res.status(200).json({message: "Sem agendamento"});
+                    return res.status(401).json({message: "Sem agendamento"});
             } else
                 return res.status(401).json({message: "Senha incorreta!"});
 
@@ -141,42 +140,37 @@ const usersController = {
     },
 
     forgotPassword: async (req, res) => {
-        try {
-            const {email, cpf} = req.body; 
-            
-            const user = await User.findOne({
-                where: { cpf, email },
-            });
-            
-            if(!user) 
-                return res.status(401).json({error: "Usuario invalido!" });
 
-            else {
-                const newPassword = passGenerator.generate({
-                    length:10,
-                    uppercase:true
-                });
-
-                const encryptNewPassword = bcrypt.hashsync(newpassword, 10);
-
-                await User.update({
-                        password: encryptNewPassword
-                    }, {
-                        where: { id: user.id },
-                    }
-                );
-
-                if(user.email === email && cpf === user.cpf) 
-                    return res.status(200).json({message: `Your new password is ${newPassword}`});
-                else 
-                    return res.status(401).json({error: "Usuario inexistente!" });
-            }
+        const {email, cpf} = req.body; 
         
-        } catch {
-            return res.status(401).json({
-                error: new Error("Invalid Request!")
+        const user = await User.findOne({
+            where: { cpf, email },
+        });
+        
+        if(!user) 
+            return res.status(401).json({error: "Usuario invalido!" });
+
+        else {
+            const newPassword = passGenerator.generate({
+                length:10,
+                uppercase:true
             });
+
+            const encryptNewPassword = bcrypt.hashSync(newPassword, 10);
+
+            await User.update({
+                    password: encryptNewPassword
+                }, {
+                    where: { id: user.id },
+                }
+            );
+
+            if(user.email === email && cpf === user.cpf) 
+                return res.status(200).json({message: `Your new password is ${newPassword}`});
+            else 
+                return res.status(401).json({error: "Usuario inexistente!" });
         }
+
     }
 };
 

@@ -30,6 +30,7 @@ const addressesController = {
                 city,
                 state,
             });
+            
             return res.status(200).json(newAddress);
             
         } catch(error) {
@@ -53,7 +54,7 @@ const addressesController = {
     
             if(!address||!number||!complement||!zip_code||!neighborhood||city||!state)
                 return res.statis(401).json({ message:"Campo nao preenchido!"});
-                
+
             let addressUpdated = await Address.update(
                 {
                     address,
