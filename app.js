@@ -18,7 +18,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(session({
-  secret: "instagram-avanade",
+  secret: "avacinade-avanade",
   saveUninitialized: true,
   resave: true
 }));

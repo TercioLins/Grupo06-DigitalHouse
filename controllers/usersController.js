@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+const { request } = require('express');
 const passGenerator = require('generate-password');
 const { User, Schedule, sequelize } = require("../models");
 
@@ -52,7 +53,7 @@ const usersController = {
 
     update: async (req, res) => {
         try {
-            const { id } = req.params;
+            const { id } = req.session.usuarioLogado;
             const { name, phone_number, gender, email, password } = req.body;
             
             if (!name|| !phone_number|| !email|| !password)
@@ -115,6 +116,12 @@ const usersController = {
                 where: { cpf }
             });
 
+            if (!cpf || !password) {
+                return res.render("login", {
+                    message: "Preencha todos os campos",
+                });
+            }
+
             if(!user) 
                 return res.render("Usuario nao encontrado.");
     
@@ -128,6 +135,7 @@ const usersController = {
             const pCheck = bcrypt.compareSync(password, user.password);
     
             if (pCheck && user.cpf === cpf) {
+                req.session.usuarioLogado = user;
                 if (schedule)
                     return res.render("index", {message: "Com agendamento"});
                 else 
