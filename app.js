@@ -10,7 +10,6 @@ let availableHoursRouter = require('./routes/availableHoursRouter');
 let schedulesRouter = require('./routes/schedulesRouter');
 let usersRouter = require('./routes/usersRouter');
 let addressesRouter = require('./routes/addressesRouter');
-let errorRouter = require('./routes/errosRouter');
 
 let app = express();
 
@@ -19,10 +18,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(session({
-  secret: "instagram-avanade",
+  secret: "avacinade-avanade",
   saveUninitialized: true,
   resave: true
 }));
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -34,7 +34,6 @@ app.use('/users', usersRouter);
 app.use("/hours", availableHoursRouter);
 app.use("/schedules", schedulesRouter);
 app.use('/addresses', addressesRouter);
-app.use('/error', errorRouter);
 
 
 // catch 404 and forward to error handler

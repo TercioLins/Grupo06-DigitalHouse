@@ -1,11 +1,17 @@
 const bcrypt = require('bcryptjs');
+const { request } = require('express');
 const passGenerator = require('generate-password');
 const { User, Schedule, sequelize } = require("../models");
 
 const usersController = {
-    index: async (req, res) => {
-        let user = await User.findAll();
-        return res.status(200).json(user);
+    index: (req, res) => {
+        return res.render('login', {
+            message: ""
+        });
+    },
+
+    register: (req, res) => {
+        return res.render("register");
     },
 
     create: async (req, res) => {
@@ -26,7 +32,6 @@ const usersController = {
             
             if (!name||!cpf||!cns||!mother_name||!birth_date|| !phone_number||!gender||!ethnicity||!email||!password||!address_id)
                 return res.status(401).json({message: "Algum campo nao foi preenchido."})
-                
 
             const senhaCrypt = bcrypt.hashSync(password, 10);
     
@@ -51,11 +56,11 @@ const usersController = {
 
     update: async (req, res) => {
         try {
-            const { id } = req.params;
+            const { id } = req.session.usuarioLogado;
             const { name, phone_number, gender, email, password } = req.body;
             
             if (!name|| !phone_number|| !email|| !password)
-                return res.status(401).json({message: "Algum campo nao foi preenchido."})
+                return res.render({message: "Algum campo nao foi preenchido."})
                 
             let user = await User.update(
                 {
@@ -106,38 +111,48 @@ const usersController = {
         }
     },
 
-    login: async (req, res) => {
+    loginAuth: async (req, res) => {
         try {
             const {cpf, password} = req.body; 
                
             const user = await User.findOne({
                 where: { cpf }
-            });
+            }); 
 
             if(!user) 
-                res.status(401).json({message: "Usuario não cadastrado!" });
+                return res.render("Usuario nao encontrado.");
+    
+            if (bcrypt.compareSync(password, user.password) && user.cpf === cpf) {
+                req.session.usuarioLogado = user;
+                return res.redirect("/userProfile");
 
-    
-            const schedule = await Schedule.findOne({
-                where: {user_id: user.id}
-            });
-            
-            if(!schedule)
-                return res.status(401).json({message:"Horario nao disponivel."});
- 
-            const pCheck = bcrypt.compareSync(password, user.password);
-    
-            if (pCheck && user.cpf === cpf) {
-                if (schedule)
-                    return res.status(200).json({message: "Com agendamento"});
-                else 
-                    return res.status(401).json({message: "Sem agendamento"});
             } else
-                return res.status(401).json({message: "Senha incorreta!"});
+                return res.redirect("index", {message: "Senha incorreta!"});
 
         } catch {
-            return res.status(401).json({error: "Invalid Request!"});
+            return res.redirect("index", {message: "Um erro ocorreu no login!"});
         }
+    },
+
+    LoadUserPage: async (req, res) => {
+        const { id } = req.session.usuarioLogado;
+
+        const user = await User.findByPk(id);
+
+        if(!user)
+            return res.status(400).send({message:"Usuario inexistente!"});
+
+        const schedule = await Schedule.findOne({
+            where: {user_id: user.id} 
+        });
+        
+        // sem agendamento -> userSchedule
+        // com agendamento -> constultSchedule
+        if (schedule)
+            return res.render("constultSchedule", {message: "Com agendamento"});
+
+        else 
+            return res.render("userSchedule", {message: "Sem agendamento"});
     },
 
     forgotPassword: async (req, res) => {
