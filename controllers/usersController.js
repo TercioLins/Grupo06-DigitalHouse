@@ -4,7 +4,7 @@ const passGenerator = require('generate-password');
 const { User, Schedule, sequelize } = require("../models");
 
 const usersController = {
-    index: (req, res) => {
+    login: (req, res) => {
         return res.render('login', {
             message: ""
         });
@@ -21,7 +21,7 @@ const usersController = {
     },
 
     userWithSchedule: (req, res) => {
-        return res.render("pagina de usuario com agendamento.");
+        return res.render("userSchedule");
     },
 
     userWithoutSchedule: (req, res) => {
@@ -123,29 +123,26 @@ const usersController = {
     },
 
     loginAuth: async (req, res) => {
-        try {
+
             const {cpf, password} = req.body; 
                
             const user = await User.findOne({
                 where: { cpf }
             }); 
 
-            if (!cpf || !password)
-                res.render("login", {message: "Preencha os campos"});
+            if(!cpf || !password)
+                return res.render("login", {message: "Preencha os campos!"});
 
             if(!user) 
-                return res.redirect("index", {message: "Usuario invalido!"});
-    
+                return res.render("login", {message: "Usuario invalido!"});
+            
             if (bcrypt.compareSync(password, user.password) && user.cpf === cpf) {
                 req.session.usuarioLogado = user;
                 return res.redirect("users/userprofile");
 
             } else
-                return res.redirect("index", {message: "Senha incorreta!"});
+                return res.render("users", {message: "Senha incorreta"});
 
-        } catch {
-            return res.redirect("index", {message: "Um erro ocorreu no login!"});
-        }
     },
 
     LoadUserPage: async (req, res) => {
@@ -156,7 +153,7 @@ const usersController = {
         });
 
         if(!user)
-            return res.status(400).send({message:"Usuario inexistente!"});
+            return res.render("login", {message: "Usuario invalido!"});
 
         const schedule = await Schedule.findOne({
             where: {user_id: user.id} 
@@ -165,10 +162,10 @@ const usersController = {
         // sem agendamento -> userSchedule
         // com agendamento -> constultSchedule
         if (schedule)
-            return res.redirect("userWithSchedule");
+            return res.redirect("/users/userWithSchedule");
 
         else 
-            return res.redirect("userWithoutSchedule");
+            return res.redirect("/users/userWithSchedule");
     },
 
     forgotPassword: async (req, res) => {
