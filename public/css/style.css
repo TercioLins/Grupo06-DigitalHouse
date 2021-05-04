@@ -196,6 +196,14 @@ footer img {
     border-radius: 30px !important;
 }
 
+.container-register {
+    background-color: #9478E6 !important;
+    color: #FFFFFF;
+    padding: 30px;
+    border-radius: 30px !important; 
+    margin-top: 100px;   
+}
+
 .container-login h5 {
     font-size: 35px;
     color: #FFFFFF;
