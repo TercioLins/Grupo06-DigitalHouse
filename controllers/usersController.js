@@ -3,9 +3,10 @@ const passGenerator = require('generate-password');
 const { User, Schedule, sequelize } = require("../models");
 
 const usersController = {
-    index: async (req, res) => {
-        let user = await User.findAll();
-        return res.status(200).json(user);
+    index: (req, res) => {
+        return res.render('login', {
+            message: ""
+        });
     },
 
     create: async (req, res) => {
@@ -55,7 +56,7 @@ const usersController = {
             const { name, phone_number, gender, email, password } = req.body;
             
             if (!name|| !phone_number|| !email|| !password)
-                return res.status(401).json({message: "Algum campo nao foi preenchido."})
+                return res.render({message: "Algum campo nao foi preenchido."})
                 
             let user = await User.update(
                 {
@@ -115,27 +116,27 @@ const usersController = {
             });
 
             if(!user) 
-                return res.status(401).json({message: "Usuario não cadastrado!" });
+                return res.render("Usuario nao encontrado.");
     
             const schedule = await Schedule.findOne({
                 where: {user_id: user.id}
             });
             
             if(!schedule)
-                return res.status(401).json({message:"Horario nao disponivel."});
+                return res.render("index", {message:"Horario nao disponivel."});
  
             const pCheck = bcrypt.compareSync(password, user.password);
     
             if (pCheck && user.cpf === cpf) {
                 if (schedule)
-                    return res.status(200).json({message: "Com agendamento"});
+                    return res.render("index", {message: "Com agendamento"});
                 else 
-                    return res.status(401).json({message: "Sem agendamento"});
+                    return res.render("index", {message: "Sem agendamento"});
             } else
-                return res.status(401).json({message: "Senha incorreta!"});
+                return res.render("login", {message: "Senha incorreta!"});
 
         } catch {
-            return res.status(401).json({error: "Invalid Request!"});
+            return res.render({message: "Erro interno"});
         }
     },
 

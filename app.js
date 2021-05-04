@@ -10,7 +10,6 @@ let availableHoursRouter = require('./routes/availableHoursRouter');
 let schedulesRouter = require('./routes/schedulesRouter');
 let usersRouter = require('./routes/usersRouter');
 let addressesRouter = require('./routes/addressesRouter');
-let errorRouter = require('./routes/errosRouter');
 
 let app = express();
 
@@ -34,7 +33,6 @@ app.use('/users', usersRouter);
 app.use("/hours", availableHoursRouter);
 app.use("/schedules", schedulesRouter);
 app.use('/addresses', addressesRouter);
-app.use('/error', errorRouter);
 
 
 // catch 404 and forward to error handler
