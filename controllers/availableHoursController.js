@@ -1,9 +1,16 @@
 const {AvailableHour, sequelize} = require('../models');
+const moment = require("moment");
 
 const availableHoursController = {
     index: async (req, res) => {
         let availableHours = await AvailableHour.findAll();
-        return res.render("userschedule", {availableHours});
+        let data = params => {
+            return moment(params).locale("pt-br").format("L");
+        }
+        let semana = params => {
+            return moment(params).locale("pt-br").format("dddd").toUpperCase();
+        }
+        return res.render("schedule", {availableHours, data, semana});
     },
     update: async (req, res) => {
         try {
