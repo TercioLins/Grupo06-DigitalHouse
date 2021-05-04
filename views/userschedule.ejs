@@ -32,8 +32,44 @@
     </nav>
 
     <section class="access">
-        <button class="btn-cadastrar">AGENDAR</button>
+        <button class="btn-cadastrar" data-bs-toggle="modal" data-bs-target="#scheduleModal">AGENDAR</button>
     </section>
+
+    <div class="modal fade" id="scheduleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-register" id="exampleModalLabel">Agendamento</h5>
+          <button type="button" class="btn-c" data-bs-dismiss="modal">X</button>
+        </div>
+        <div class="modal-body">
+          <div class="row d-flex justify-content-center">
+            <div class="container d-flex justify-content-start m-3">
+              <select class="form-select m-2" aria-label="Default select example">
+                <option selected>Dia</option>
+                <% for (disponivel of availableHours) { %>
+                  <% if (disponivel.available) { %>
+                    <option value="1">disponivel.date</option>
+                  <% } %>
+                <% } %>
+              </select>
+
+              <select class="form-select m-2" aria-label="Default select example">
+                <option selected>Hora</option>
+                <% for (disponivel of availableHours) { %>
+                  <option value="1">One</option>
+                  <% } %>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-register">AGENDAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
     
     <footer>
         <div class="footer-img">

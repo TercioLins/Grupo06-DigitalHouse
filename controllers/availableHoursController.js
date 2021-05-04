@@ -1,11 +1,9 @@
 const {AvailableHour, sequelize} = require('../models');
-// const schedules = require('./schedulesController');
 
 const availableHoursController = {
     index: async (req, res) => {
-        // let teste = schedules.searchUserHasSchedule(req, res);
         let availableHours = await AvailableHour.findAll();
-        return res.status(200).json(availableHours);
+        return res.render("userschedule", {availableHours});
     },
     update: async (req, res) => {
         try {
