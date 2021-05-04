@@ -23,7 +23,11 @@ const usersController = {
                 password,
                 address_id,
             } = req.body;
-    
+            
+            if (!name||!cpf||!cns||!mother_name||!birth_date|| !phone_number||!gender||!ethnicity||!email||!password||!address_id)
+                return res.status(401).json({message: "Algum campo nao foi preenchido."})
+                
+
             const senhaCrypt = bcrypt.hashSync(password, 10);
     
             const user = await User.create({
@@ -49,7 +53,10 @@ const usersController = {
         try {
             const { id } = req.params;
             const { name, phone_number, gender, email, password } = req.body;
-    
+            
+            if (!name|| !phone_number|| !email|| !password)
+                return res.status(401).json({message: "Algum campo nao foi preenchido."})
+                
             let user = await User.update(
                 {
                     name,
@@ -71,22 +78,28 @@ const usersController = {
     delete: async (req, res) => {
         try {
             const { id } = req.params;
-            await User.destroy({
+            const user = await User.destroy({
                 where: { id },
             });
+
+            if(!user) 
+                return res.status(401).json("Usuario não encontrado.");
+
             return res.status(200).json("Deletado com sucesso.");
 
         } catch(error) {
-            return res.status(200).json("CPF não registrado!");
+            return res.status(401).json("CPF não registrado!");
         }
     },
 
     find: async (req, res) => {
         try {
             const { id } = req.params;
+            
             const user = await User.findOne({
                 where: { id },
             });
+
             return res.status(200).json(user);
 
         } catch(error) {
@@ -97,16 +110,21 @@ const usersController = {
     login: async (req, res) => {
         try {
             const {cpf, password} = req.body; 
+               
             const user = await User.findOne({
                 where: { cpf }
             });
-            const schedule = await Schedule.findOne({
-                where: {user_id: user.id}
-            });
-    
+
             if(!user) 
                 return res.status(401).json({message: "Usuario não cadastrado!" });
     
+            const schedule = await Schedule.findOne({
+                where: {user_id: user.id}
+            });
+            
+            if(!schedule)
+                return res.status(401).json({message:"Horario nao disponivel."});
+ 
             const pCheck = bcrypt.compareSync(password, user.password);
     
             if (pCheck && user.cpf === cpf) {

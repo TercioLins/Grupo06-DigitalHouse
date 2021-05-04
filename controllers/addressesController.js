@@ -17,7 +17,10 @@ const addressesController = {
                 city,
                 state,
             } = req.body;
-    
+            
+            if(!address||!number||!complement||!zip_code||!neighborhood||city||!state)
+                return res.statis(401).json({ message:"Campo nao preenchido!"});
+
             let newAddress = await Address.create({
                 address,
                 number,
@@ -48,6 +51,9 @@ const addressesController = {
                 state,
             } = req.body;
     
+            if(!address||!number||!complement||!zip_code||!neighborhood||city||!state)
+                return res.statis(401).json({ message:"Campo nao preenchido!"});
+                
             let addressUpdated = await Address.update(
                 {
                     address,
