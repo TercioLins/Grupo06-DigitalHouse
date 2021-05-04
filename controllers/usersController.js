@@ -120,11 +120,11 @@ const usersController = {
             }); 
 
             if(!user) 
-                return res.render("Usuario nao encontrado.");
+                return res.redirect("index", {message: "Usuario nao encontrado."});
     
             if (bcrypt.compareSync(password, user.password) && user.cpf === cpf) {
                 req.session.usuarioLogado = user;
-                return res.redirect("/userProfile");
+                return res.redirect("/userprofile");
 
             } else
                 return res.redirect("index", {message: "Senha incorreta!"});
@@ -149,10 +149,10 @@ const usersController = {
         // sem agendamento -> userSchedule
         // com agendamento -> constultSchedule
         if (schedule)
-            return res.render("constultSchedule", {message: "Com agendamento"});
+            return res.redirect("constultschedule");
 
         else 
-            return res.render("userSchedule", {message: "Sem agendamento"});
+            return res.redirect("userschedule");
     },
 
     forgotPassword: async (req, res) => {

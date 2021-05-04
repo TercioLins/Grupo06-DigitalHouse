@@ -9,13 +9,13 @@ const ValidadeForgotPassword = require('../middlewares/ValidadeForgotPassword');
 /* GET users listing. */
 router.get("/", usersController.index);
 router.get('/register', usersController.register);
-router.get("/userProfile", ValidadeLogin, usersController.LoadUserPage);
+router.get("/userprofile", ValidadeLogin, usersController.LoadUserPage);
 
 router.put("/:id", ValidateUserUpdate, usersController.update);
 router.delete("/:id", usersController.delete);
 
 router.post("/", ValidateUserRegister, usersController.create);
-router.post("/login", ValidadeLogin, usersController.loginAuth);
+router.post("/login", usersController.loginAuth);
 router.post("/forgotpassword", ValidadeForgotPassword, usersController.forgotPassword);
 
 module.exports = router;
