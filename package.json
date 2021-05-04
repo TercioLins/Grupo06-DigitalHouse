@@ -17,6 +17,7 @@
     "morgan": "~1.9.1",
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.7",
+    "req-flash": "0.0.3",
     "sequelize": "^6.6.2"
   },
   "description": "Projeto integrador com a finalidade de desenvolver uma página para agendamentos de vacinação.",

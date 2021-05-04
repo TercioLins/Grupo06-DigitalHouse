@@ -115,7 +115,8 @@ const usersController = {
             });
 
             if(!user) 
-                return res.status(401).json({message: "Usuario não cadastrado!" });
+                res.status(401).json({message: "Usuario não cadastrado!" });
+
     
             const schedule = await Schedule.findOne({
                 where: {user_id: user.id}

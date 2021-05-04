@@ -15,7 +15,7 @@ router.put("/:id", ValidateUserUpdate, usersController.update);
 router.delete("/:id", usersController.delete);
 
 router.post("/", ValidateUserRegister, usersController.create);
-router.post("/login", ValidadeLogin ,usersController.login);
+router.post("/login" ,usersController.login);
 router.post("/forgotpassword", ValidadeForgotPassword, usersController.forgotPassword);
 
 module.exports = router;
