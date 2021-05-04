@@ -32,7 +32,6 @@
         <div class="container container-login w-50 mb-5">
             <div class="modal-header">
                 <h5 class="modal-register" id="exampleModalLabel">Entrar</h5>
-                <button type="button" class="btn-c" data-bs-dismiss="modal">X</button>
             </div>
             <p><span class="recovery">Informe seus dados:</span></p>
             <div class="modal-body-login">
@@ -46,7 +45,12 @@
                             <input type="password" class="form-control" name="password" id="password" placeholder="Senha">
                             <label for="floatingInput">SENHA:*</label>
                         </div >
-    
+                        <% if (message) { %>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong><%= message %></strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                              </div>
+                        <% } %>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-register">ENTRAR</button>
                         </div>
