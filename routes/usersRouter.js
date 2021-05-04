@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const bodyParser = require('body-parser');
 const usersController = require("../controllers/usersController");
 const ValidateUserRegister = require('../middlewares/ValidateUserRegister');
 const ValidateUserUpdate = require('../middlewares/ValidateUserUpdate');
