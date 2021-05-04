@@ -4,10 +4,7 @@ module.exports = async (req, res, next) => {
     let {name, cpf, cns, mother_name, birth_date, phone_number, gender, ethnicity, email, password} = req.body;
     const emailValidate = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     
-    if (!name || !cpf || !cns || !mother_name || !birth_date || !phone_number || !gender || !ethnicity || !email || !password) {
-        return res.status(400).json({ erro: "Campo não preenchido!"});
-
-    } else if (!cpfFormatValidate(cpf)) {
+   if (!cpfFormatValidate(cpf)) {
         return res.status(400).json({ erro: "CPF inválido!"});
 
     } else if (name.length < 2 || name.length >= 150) {

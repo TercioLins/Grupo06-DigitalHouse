@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const passGenerator = require('generate-password');
-const { User, sequelize } = require("../models");
+const { User, Schedule, sequelize } = require("../models");
 
 const usersController = {
     index: async (req, res) => {
@@ -23,7 +23,11 @@ const usersController = {
                 password,
                 address_id,
             } = req.body;
-    
+            
+            if (!name||!cpf||!cns||!mother_name||!birth_date|| !phone_number||!gender||!ethnicity||!email||!password||!address_id)
+                return res.status(401).json({message: "Algum campo nao foi preenchido."})
+                
+
             const senhaCrypt = bcrypt.hashSync(password, 10);
     
             const user = await User.create({
@@ -49,7 +53,10 @@ const usersController = {
         try {
             const { id } = req.params;
             const { name, phone_number, gender, email, password } = req.body;
-    
+            
+            if (!name|| !phone_number|| !email|| !password)
+                return res.status(401).json({message: "Algum campo nao foi preenchido."})
+                
             let user = await User.update(
                 {
                     name,
@@ -71,22 +78,28 @@ const usersController = {
     delete: async (req, res) => {
         try {
             const { id } = req.params;
-            await User.destroy({
+            const user = await User.destroy({
                 where: { id },
             });
+
+            if(!user) 
+                return res.status(401).json("Usuario não encontrado.");
+
             return res.status(200).json("Deletado com sucesso.");
 
         } catch(error) {
-            return res.status(200).json("CPF não registrado!");
+            return res.status(401).json("CPF não registrado!");
         }
     },
 
     find: async (req, res) => {
         try {
             const { id } = req.params;
+            
             const user = await User.findOne({
                 where: { id },
             });
+
             return res.status(200).json(user);
 
         } catch(error) {
@@ -96,26 +109,34 @@ const usersController = {
 
     login: async (req, res) => {
         try {
-            const {cpf, email , password} = req.body; 
-            
+            const {cpf, password} = req.body; 
+               
             const user = await User.findOne({
-                where: { cpf, email },
+                where: { cpf }
             });
 
             if(!user) 
-                return res.status(401).json({error: "Usuario invalido!" });
-
-            const pCheck = bcrypt.compareSync(password, user.password);
-
-            if(user.email === email && pCheck && user.cpf === cpf)
-                return res.status(200).json({message: "Ok"});
-            else
-                return res.status(401).json({error: "Login invalido!" });
-            
-        } catch {
-            return res.status(401).json({
-                error: new Error("Invalid Request!")
+                return res.status(401).json({message: "Usuario não cadastrado!" });
+    
+            const schedule = await Schedule.findOne({
+                where: {user_id: user.id}
             });
+            
+            if(!schedule)
+                return res.status(401).json({message:"Horario nao disponivel."});
+ 
+            const pCheck = bcrypt.compareSync(password, user.password);
+    
+            if (pCheck && user.cpf === cpf) {
+                if (schedule)
+                    return res.status(200).json({message: "Com agendamento"});
+                else 
+                    return res.status(200).json({message: "Sem agendamento"});
+            } else
+                return res.status(401).json({message: "Senha incorreta!"});
+
+        } catch {
+            return res.status(401).json({error: "Invalid Request!"});
         }
     },
 
@@ -136,7 +157,7 @@ const usersController = {
                     uppercase:true
                 });
 
-                const encryptNewPassword = bcrypt.hashSync(newPassword, 10);
+                const encryptNewPassword = bcrypt.hashsync(newpassword, 10);
 
                 await User.update({
                         password: encryptNewPassword
