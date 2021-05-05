@@ -31,6 +31,12 @@
         color: #beaef0;
     }
     
+    .h5,
+    h5 {
+        font-size: 1.25rem;
+        padding: 16px;
+    }
+    
     .nav-link.active {
         background-color: #beaef0 !important;
         color: #f8f8ff !important;
@@ -233,7 +239,6 @@
     .container-register {
         background-color: #9478E6 !important;
         color: #FFFFFF;
-        padding: 30px;
         border-radius: 30px !important;
         margin-top: 100px;
     }
