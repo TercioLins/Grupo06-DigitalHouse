@@ -24,10 +24,6 @@ const usersController = {
         return res.render("consultschedule");
     },
 
-    buscarHorario: (req, res) => {
-        
-    },
-
     userWithoutSchedule: (req, res) => {
         return res.render("userschedule");
     },
