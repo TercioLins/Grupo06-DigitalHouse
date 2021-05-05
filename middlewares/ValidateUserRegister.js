@@ -4,26 +4,30 @@ module.exports = async (req, res, next) => {
     let {name, cpf, cns, mother_name, birth_date, phone_number, gender, ethnicity, email, password} = req.body;
     const emailValidate = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     
-   if (!cpfFormatValidate(cpf)) {
-        return res.status(400).json({ erro: "CPF inválido!"});
+    
+    if (!name|| !cpf|| !cns|| !mother_name|| !birth_date|| !phone_number|| !gender|| !ethnicity|| !email|| !password) {
+        return res.render("register", {message: "Preencha todos os campos"});
+
+    } else if (!cpfFormatValidate(cpf)) {
+        return res.render("register", { message: "CPF inválido!"});
 
     } else if (name.length < 2 || name.length >= 150) {
-        return res.status(400).json({ erro: name.length < 2 ? "Nome curto" : "Nome longo" });
+        return res.render("register", { message: name.length < 2 ? "Nome curto" : "Nome longo" });
 
     } else if (mother_name.length < 2 || mother_name.length >= 150) {
-        return res.status(400).json({ erro: mother_name.length < 2 ? "Nome da mãe curto" : "Nome da mãe longo" });
+        return res.render("register", { message: mother_name.length < 2 ? "Nome da mãe curto" : "Nome da mãe longo" });
 
     } else if (cns.length != 15) {
-        return res.status(400).json({ erro: "CNS inválido!" });
+        return res.render("register", { message: "CNS inválido!" });
 
     } else if (!emailValidate.test(email)) {
-        return res.status(400).json({ erro: "Email inválido!" });
+        return res.render("register", { message: "Email inválido!" });
         
     } else if (!phoneNumberValidator(phone_number)) {
-        return res.status(400).json({ erro: "Telefone inválido!" });
+        return res.render("register", { message: "Telefone inválido!" });
         
     } else if (password.length < 8 || password.length > 15) {
-        return res.status(400).json({ erro: "Senha deve ser entre 8 e 15 caracteres." });
+        return res.render("register", { message: "Senha deve ser entre 8 e 15 caracteres." });
         
     } else {
         next();

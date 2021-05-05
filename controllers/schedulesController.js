@@ -35,20 +35,14 @@ const schedulesController = {
 
     searchUserHasSchedule: async (req, res) => {
         try{
-            let {id} = req.params;
-            let schedule = await Schedule.findAndCountAll({
-                where: {
-                    user_id: id
-                }
-            });
+            let {id} = req.session.usuarioLogado;
+            // let schedule = await Schedule.findAll({
+            //     where: { user_id: id },
+            //     include: {all: true, nested: true}
+            // });
+            console.log(id);
         
-            if(!schedule)
-                return res.status(401).json({message:"Horario inexistente."});
-        
-            if (schedule.count > 0 ) 
-                return res.status(200).json(schedule.count);
-            else
-                return res.status(400).json('sem horario marcado');
+            // res.render("consultschedule", {schedule: schedule});
             
         } catch {
             return res.status(401).json({error: "Invalid Request!"});

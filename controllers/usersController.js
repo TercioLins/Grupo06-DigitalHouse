@@ -4,10 +4,34 @@ const passGenerator = require('generate-password');
 const { User, Schedule, sequelize } = require("../models");
 
 const usersController = {
-    index: (req, res) => {
+    login: (req, res) => {
         return res.render('login', {
             message: ""
         });
+    },
+
+    register: (req, res) => {
+        return res.render("register", {
+            message: ""
+        });
+    },
+
+    forgetPasswordpage: (req, res) => {
+        return res.render('passwordrecovery', {
+            message: ""
+        });
+    },
+
+    userWithSchedule: (req, res) => {
+        return res.render("consultschedule");
+    },
+
+    buscarHorario: (req, res) => {
+        
+    },
+
+    userWithoutSchedule: (req, res) => {
+        return res.render("userschedule");
     },
 
     create: async (req, res) => {
@@ -26,10 +50,6 @@ const usersController = {
                 address_id,
             } = req.body;
             
-            if (!name||!cpf||!cns||!mother_name||!birth_date|| !phone_number||!gender||!ethnicity||!email||!password||!address_id)
-                return res.status(401).json({message: "Algum campo nao foi preenchido."})
-                
-
             const senhaCrypt = bcrypt.hashSync(password, 10);
     
             const user = await User.create({
@@ -108,54 +128,66 @@ const usersController = {
         }
     },
 
-    login: async (req, res) => {
-        try {
+    loginAuth: async (req, res) => {
+
             const {cpf, password} = req.body; 
                
             const user = await User.findOne({
                 where: { cpf }
-            });
+            }); 
 
-            if (!cpf || !password) {
-                return res.render("login", {
-                    message: "Preencha todos os campos",
-                });
-            }
+            if(!cpf || !password)
+                return res.render("login", {message: "Preencha os campos!"});
 
             if(!user) 
-                return res.render("Usuario nao encontrado.");
-    
-            const schedule = await Schedule.findOne({
-                where: {user_id: user.id}
-            });
+                return res.render("login", {message: "Usuario invalido!"});
             
-            if(!schedule)
-                return res.render("index", {message:"Horario nao disponivel."});
- 
-            const pCheck = bcrypt.compareSync(password, user.password);
-    
-            if (pCheck && user.cpf === cpf) {
+            if (bcrypt.compareSync(password, user.password) && user.cpf === cpf) {
                 req.session.usuarioLogado = user;
-                if (schedule)
-                    return res.render("index", {message: "Com agendamento"});
-                else 
-                    return res.render("index", {message: "Sem agendamento"});
-            } else
-                return res.render("login", {message: "Senha incorreta!"});
+                return res.redirect("/users/userprofile");
 
-        } catch {
-            return res.render({message: "Erro interno"});
-        }
+            } else
+                return res.render("login", {
+                    message:"Senha incorreta!"
+                });
+
+    },
+
+    LoadUserPage: async (req, res) => {
+        const { id } = req.session.usuarioLogado;
+
+        const user = await User.findOne({
+            where: { id }
+        }); 
+
+        if(!user)
+            return res.render("login", {message: "Usuario invalido!"});
+
+        const schedule = await Schedule.findOne({
+            where: {user_id: user.id} 
+        });
+        
+        // sem agendamento -> userSchedule
+        // com agendamento -> constultSchedule
+        if (schedule)
+            return res.redirect("/users/userWithSchedule");
+
+        else 
+            return res.redirect("/users/userWithoutSchedule");
     },
 
     forgotPassword: async (req, res) => {
-
         const {email, cpf} = req.body; 
-        
+
+        if(!email || !cpf)
+            return res.render("passwordrecovery", {
+                message:"Preencha todos os campos!"
+            });
+
         const user = await User.findOne({
             where: { cpf, email },
         });
-        
+
         if(!user) 
             return res.status(401).json({error: "Usuario invalido!" });
 

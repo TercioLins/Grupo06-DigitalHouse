@@ -7,110 +7,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
-    <title>MODAL</title>
+    <title>Login</title>
 </head>
 
 <body>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-register" id="exampleModalLabel">CADASTRO PARA VACINAÇÃO COVID-19</h5>
-                    <button type="button" class="btn-c" data-bs-dismiss="modal">X</button>
-                </div>
-                <div class="modal-body">
-                    <form class="modal-form">
-                        <div class="row">
-                            <div class="form-floating col-sm-12 col-md-12 mb-2">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Nome">
-                                <label for="floatingInput">Nome*:</label>
-                            </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-2">
-                                <input type="text" class="form-control" name="CPF" id="floatingInput" placeholder="CPF">
-                                <label for="floatingInput">CPF*:</label>
-                            </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-2">
-                                <input type="text" class="form-control" name="email" id="floatingInput" placeholder="SUS">
-                                <label for="floatingInput">Cartão SUS*:</label>
-                            </div>
-                            <div class="form-floating col-sm-12 col-md-12 mb-2">
-                                <input type="text" class="form-control" name="NomeCompleto" id="floatingInput" placeholder="NomeCompleto">
-                                <label for="floatingInput">Nome Completo da Mãe*:</label>
-                            </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-2">
-                                <input type="text" class="form-control" name="Nascimento" id="floatingInput" placeholder="Nascimento">
-                                <label for="floatingInput">Nascimento*:</label>
-                            </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-2">
-                                <input type="text" class="form-control" name="Telefone" id="floatingInput" placeholder="Telefone">
-                                <label for="floatingInput">Telefone*:</label>
-                            </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-2">
-                                <select class="form-select px-10">
-                                    <option>Sexo*</option>
-                                    <option value="1">Masculino</option>
-                                    <option value="2">Feminino</option>
-                                    <option value="3">Outros</option>
-                                </select>
-                            </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-2">
-                                <select class="form-select">
-                                    <option>Raça/Cor*</option>
-                                    <option value="1">Masculino</option>
-                                    <option value="2">Feminino</option>
-                                    <option value="3">Outros</option>
-                                </select>
-                            </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-2">
-                                <input type="text" class="form-control" name="CEP" id="floatingInput" placeholder="CEP">
-                                <label for="floatingInput">CEP*:</label>
-                            </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-2">
-                                <input type="text" class="form-control" name="Rua" id="floatingInput" placeholder="Rua">
-                                <label for="floatingInput">Rua*:</label>
-                            </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-2">
-                                <input type="text" class="form-control" name="Número" id="floatingInput" placeholder="Número">
-                                <label for="floatingInput">Número*:</label>
-                            </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-2">
-                                <input type="text" class="form-control" name="Bairro" id="floatingInput" placeholder="Bairro">
-                                <label for="floatingInput">Bairro*:</label>
-                            </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-2">
-                                <input type="text" class="form-control" name="Complemento" id="floatingInput" placeholder="Complemento">
-                                <label for="floatingInput">Complemento*:</label>
-                            </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-2">
-                                <input type="text" class="form-control" name="Cidade" id="floatingInput" placeholder="Cidade">
-                                <label for="floatingInput">Cidade*:</label>
-                            </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-2">
-                                <input type="text" class="form-control" name="EMAIL" id="floatingInput" placeholder="EMAIL">
-                                <label for="floatingInput">Email*:</label>
-                            </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-2">
-                                <input type="text" class="form-control" name="ConfEmail" id="floatingInput" placeholder="ConfEmail">
-                                <label for="floatingInput">Confirmação de Email*:</label>
-                            </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-2">
-                                <input type="text" class="form-control" name="senha" id="floatingInput" placeholder="senha">
-                                <label for="floatingInput">Senha*:</label>
-                            </div>
-                            <div class="form-floating col-sm-12 col-md-6 mb-2">
-                                <input type="text" class="form-control" name="confSenha" id="floatingInput" placeholder="ConfEmail">
-                                <label for="floatingInput">Confirmação de Senha*:</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-register">CADASTRAR</button>
+    
+        <nav id="navbar-example2" class="navbar navbar-expand-md fixed-top navbar-light bg-white">
+            <div class="container-fluid justify-content-between mx-10">
+                <a class="navbar-brand img-fluid mx-1" href="#"><img src="/images/LOGO.png" alt="logo" width="150"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end flex-grow-0" id="navbarTogglerDemo01">
+                    <ul class="nav nav-pills justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link text-center fs-5" href="#carousel">INÍCIO</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
+        </nav>
+    
+    
+        <div class="container container-register w-60 mb-5">
+            <div class="header">
+                <h5 class="modal-register" id="exampleModalLabel" >CADASTRO PARA VACINAÇÃO COVID-19</h5>                    
+            </div>           
+                <form class="form-control" action="/users/register" method="POST">
+                    <div class="row">
+                        <div class="form-floating col-sm-12 col-md-12 mb-2">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Nome">
+                            <label for="floatingInput">Nome*:</label>
+                        </div>
+                        <div class="form-floating col-sm-12 col-md-6 mb-2">
+                            <input type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF">
+                            <label for="floatingInput">CPF*:</label>
+                        </div>
+                        <div class="form-floating col-sm-12 col-md-6 mb-2">
+                            <input type="text" class="form-control" name="cns" id="cns" placeholder="SUS">
+                            <label for="floatingInput">Cartão SUS*:</label>
+                        </div>
+                        <div class="form-floating col-sm-12 col-md-12 mb-2">
+                            <input type="text" class="form-control" name="mother_name" id="mother_name" placeholder="NomeCompleto">
+                            <label for="floatingInput">Nome Completo da Mãe*:</label>
+                        </div>
+                        <div class="form-floating col-sm-12 col-md-6 mb-2">
+                            <input type="text" class="form-control" name="Nascimento" id="birth_name" placeholder="Nascimento">
+                            <label for="floatingInput">Nascimento*:</label>
+                        </div>
+                        <div class="form-floating col-sm-12 col-md-6 mb-2">
+                            <input type="text" class="form-control" name="phone_number" id="phone_number" placeholder="Telefone">
+                            <label for="floatingInput">Telefone*:</label>
+                        </div>
+                        <div class="form-floating col-sm-12 col-md-6 mb-2">
+                            <select class="form-select px-10" id="gender" name="gender">
+                                <option>Sexo*</option>
+                                <option value="1">Masculino</option>
+                                <option value="2">Feminino</option>
+                                <option value="3">Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-floating col-sm-12 col-md-6 mb-2">
+                            <select class="form-select" id="ethnicity" name="ethnicity">
+                                <option>Raça/Cor*</option>
+                                <option value="1">Masculino</option>
+                                <option value="2">Feminino</option>
+                                <option value="3">Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-floating col-sm-12 col-md-6 mb-2">
+                            <input type="text" class="form-control" name="zip_code" id="zip_code" placeholder="CEP">
+                            <label for="floatingInput">CEP*:</label>
+                        </div>
+                        <div class="form-floating col-sm-12 col-md-6 mb-2">
+                            <input type="text" class="form-control" name="adress" id="adress" placeholder="Rua">
+                            <label for="floatingInput">Rua*:</label>
+                        </div>
+                        <div class="form-floating col-sm-12 col-md-6 mb-2">
+                            <input type="text" class="form-control" name="number" id="number" placeholder="Número">
+                            <label for="floatingInput">Número*:</label>
+                        </div>
+                        <div class="form-floating col-sm-12 col-md-6 mb-2">
+                            <input type="text" class="form-control" name="neighborhood" id="neighborhood" placeholder="Bairro">
+                            <label for="floatingInput">Bairro*:</label>
+                        </div>
+                        <div class="form-floating col-sm-12 col-md-6 mb-2">
+                            <input type="text" class="form-control" name="complement" id="complement" placeholder="Complemento">
+                            <label for="floatingInput">Complemento*:</label>
+                        </div>
+                        <div class="form-floating col-sm-12 col-md-6 mb-2">
+                            <input type="text" class="form-control" name="city" id="city" placeholder="Cidade">
+                            <label for="floatingInput">Cidade*:</label>
+                        </div>
+                        <div class="form-floating col-sm-12 col-md-6 mb-2">
+                            <input type="text" class="form-control" name="email" id="email" placeholder="EMAIL">
+                            <label for="floatingInput">Email*:</label>
+                        </div>
+                        <div class="form-floating col-sm-12 col-md-6 mb-2">
+                            <input type="text" class="form-control" name="confemail" id="confemail" placeholder="ConfEmail">
+                            <label for="floatingInput">Confirmação de Email*:</label>
+                        </div>
+                        <div class="form-floating col-sm-12 col-md-6 mb-2">
+                            <input type="text" class="form-control" name="password" id="password" placeholder="senha">
+                            <label for="floatingInput">Senha*:</label>
+                        </div>
+                        <div class="form-floating col-sm-12 col-md-6 mb-2">
+                            <input type="text" class="form-control" name="confSenha" id="floatingInput" placeholder="ConfEmail">
+                            <label for="floatingInput">Confirmação de Senha*:</label>
+                        </div>
+                    </div>
+                </form>
+            
+            <div class="modal-footer">
+                <% if (message) { %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><%= message %></strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                <% } %>
+                <button type="submit" class="btn btn-register">CADASTRAR</button>
+            </div>
         </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+        
+    
+       
+    <footer class="relative-bottom">
+        <div class="footer-img">
+            <img src="/images/seringa.png" alt="">
+        </div>
+        <div class="copyright">Copyright &copy; 2021</div>
+    </footer>    
+   
+    
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 </body>
 
 </html>
