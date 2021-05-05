@@ -11,7 +11,9 @@ const usersController = {
     },
 
     register: (req, res) => {
-        return res.render("register");
+        return res.render("register", {
+            message: ""
+        });
     },
 
     forgetPasswordpage: (req, res) => {
@@ -22,6 +24,10 @@ const usersController = {
 
     userWithSchedule: (req, res) => {
         return res.render("consultschedule");
+    },
+
+    buscarHorario: (req, res) => {
+        
     },
 
     userWithoutSchedule: (req, res) => {
@@ -44,9 +50,6 @@ const usersController = {
                 address_id,
             } = req.body;
             
-            if (!name||!cpf||!cns||!mother_name||!birth_date|| !phone_number||!gender||!ethnicity||!email||!password||!address_id)
-                return res.status(401).json({message: "Algum campo nao foi preenchido."})
-
             const senhaCrypt = bcrypt.hashSync(password, 10);
     
             const user = await User.create({

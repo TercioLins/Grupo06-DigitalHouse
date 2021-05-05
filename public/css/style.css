@@ -189,7 +189,7 @@ footer img {
     font-style: italic;
 }
 
-.container-login {
+.container-login, .modal-content {
     background-color: #9478E6 !important;
     color: #FFFFFF;
     padding: 30px;
