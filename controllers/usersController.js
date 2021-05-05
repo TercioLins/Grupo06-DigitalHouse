@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const { request } = require('express');
 const passGenerator = require('generate-password');
 const moment = require("moment");
-const { User, Schedule, AvailableHour, sequelize } = require("../models");
+const { User, Schedule, AvailableHour, Adress, sequelize } = require("../models");
 
 const usersController = {
     login: (req, res) => {
@@ -46,8 +46,6 @@ const usersController = {
         return res.render("consultschedule", {
             schedule,
             hour,
-            semana,
-            data
         });
     },
 
@@ -73,6 +71,16 @@ const usersController = {
 
             const senhaCrypt = bcrypt.hashSync(password, 10);
 
+            // const adress = Adress.create({
+            //     address:,
+            //     number:,
+            //     complement:,
+            //     zip_code:,
+            //     neighborhood:,
+            //     city:,
+            //     state:
+            // })
+
             const user = await User.create({
                 name,
                 cpf,
@@ -86,6 +94,8 @@ const usersController = {
                 password: senhaCrypt,
                 address_id,
             });
+
+
             return res.render("userschedule", {
                 user : user
             });
