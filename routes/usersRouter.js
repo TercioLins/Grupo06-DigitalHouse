@@ -20,6 +20,6 @@ router.delete("/:id", usersController.delete);
 router.post("/", usersController.loginAuth);
 router.post("/register", ValidateUserRegister, usersController.create);
 //router.post("/userprofile", usersController.LoadUserPage);
-router.post("/forgotpassword", ValidadeForgotPassword, usersController.forgotPassword);
+router.post("/forgotpassword", usersController.forgotPassword);
 
 module.exports = router;

@@ -15,15 +15,17 @@ const usersController = {
     },
 
     forgetPasswordpage: (req, res) => {
-        return res.render("forgotPasswordPage");
+        return res.render('passwordrecovery', {
+            message: ""
+        });
     },
 
     userWithSchedule: (req, res) => {
-        return res.render("userschedule");
+        return res.render("consultschedule");
     },
 
     userWithoutSchedule: (req, res) => {
-        return res.render("consultschedule");
+        return res.render("userschedule");
     },
 
     create: async (req, res) => {
@@ -172,13 +174,17 @@ const usersController = {
     },
 
     forgotPassword: async (req, res) => {
-
         const {email, cpf} = req.body; 
-        
+
+        if(!email || !cpf)
+            return res.render("passwordrecovery", {
+                message:"Preencha todos os campos!"
+            });
+
         const user = await User.findOne({
             where: { cpf, email },
         });
-        
+
         if(!user) 
             return res.status(401).json({error: "Usuario invalido!" });
 
