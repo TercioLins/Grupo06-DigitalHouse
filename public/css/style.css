@@ -17,6 +17,13 @@
         background: #FAFAFA;
     }
     
+    .inf {
+        margin-top: 0;
+        margin-bottom: revert;
+        display: block;
+        padding: 0%;
+    }
+    
     body::-webkit-scrollbar-thumb {
         background-color: #9478E6;
         border-radius: 25px;
