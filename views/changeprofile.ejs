@@ -36,31 +36,31 @@
     <form class="form-control" action="/users/updateprofile" method="POST">
             <div class="row">
                 <div class="form-floating col-sm-12 col-md-12 mb-2">
-                    <input value="" disabled type="text" class="form-control" name="name" id="name" placeholder="Nome">
+                    <input value="<%= name %>" disabled type="text" class="form-control" name="name" id="name" placeholder="Nome">
                     <label for="floatingInput">Nome*:</label>
                 </div>
                 <div class="form-floating col-sm-12 col-md-6 mb-2">
-                    <input value="" disabled type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF">
+                    <input value="<%= cpf %>" disabled type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF">
                     <label for="floatingInput">CPF*:</label>
                 </div>
                 <div class="form-floating col-sm-12 col-md-6 mb-2">
-                    <input value="" disabled type="text" class="form-control" name="cns" id="cns" placeholder="SUS">
+                    <input value="<%= cns %>" disabled type="text" class="form-control" name="cns" id="cns" placeholder="SUS">
                     <label for="floatingInput">Cartão SUS*:</label>
                 </div>
                 <div class="form-floating col-sm-12 col-md-12 mb-2">
-                    <input value="" disabled type="text" class="form-control" name="mother_name" id="mother_name" placeholder="NomeCompleto">
+                    <input value="<%= mother_name %>" disabled type="text" class="form-control" name="mother_name" id="mother_name" placeholder="NomeCompleto">
                     <label for="floatingInput">Nome Completo da Mãe*:</label>
                 </div>
                 <div class="form-floating col-sm-12 col-md-6 mb-2">
-                    <input value="" disabled type="text" class="form-control" name="birth_date" id="birth_date" placeholder="Nascimento">
+                    <input value="<%= birth_date %>" disabled type="text" class="form-control" name="birth_date" id="birth_date" placeholder="Nascimento">
                     <label for="floatingInput">Nascimento*:</label>
                 </div>
                 <div class="form-floating col-sm-12 col-md-6 mb-2">
-                    <input value="" type="text" class="form-control" name="phone_number" id="phone_number" placeholder="Telefone">
+                    <input value="<%= phone_number %>" type="text" class="form-control" name="phone_number" id="phone_number" placeholder="Telefone">
                     <label for="floatingInput">Telefone*:</label>
                 </div>
                 <div class="form-floating col-sm-12 col-md-6 mb-2">
-                    <select value="" disabled class="form-select px-10" id="gender" name="gender">
+                    <select value="<%= gender %>" disabled class="form-select px-10" id="gender" name="gender">
                                 <option>Sexo*</option>
                                 <option value="1">Feminino</option>
                                 <option value="2">Masculino</option>
@@ -70,7 +70,7 @@
                             </select>
                 </div>
                 <div class="form-floating col-sm-12 col-md-6 mb-2">
-                    <select value="" disabled class="form-select" id="ethnicity" name="ethnicity">
+                    <select value="<%= ethnicity %>" disabled class="form-select" id="ethnicity" name="ethnicity">
                                 <option>Raça/Cor*</option>
                                   <option value="1">Branca</option>
                                     <option value="2">Preta</option>
@@ -81,43 +81,43 @@
                             </select>
                 </div>
                 <div class="form-floating col-sm-12 col-md-6 mb-2">
-                    <input value="" disabled type="text" class="form-control" name="zip_code" id="zip_code" placeholder="CEP">
+                    <input value="<%= zip_code %>" disabled type="text" class="form-control" name="zip_code" id="zip_code" placeholder="CEP">
                     <label for="floatingInput">CEP*:</label>
                 </div>
                 <div class="form-floating col-sm-12 col-md-6 mb-2">
-                    <input value="" disabled type="text" class="form-control" name="address" id="address" placeholder="Rua">
+                    <input value="<%= address %>" disabled type="text" class="form-control" name="address" id="address" placeholder="Rua">
                     <label for="floatingInput">Rua*:</label>
                 </div>
                 <div class="form-floating col-sm-12 col-md-6 mb-2">
-                    <input value="" disabled type="text" class="form-control" name="number" id="number" placeholder="Número">
+                    <input value="<%= number %>" disabled type="text" class="form-control" name="number" id="number" placeholder="Número">
                     <label for="floatingInput">Número*:</label>
                 </div>
                 <div class="form-floating col-sm-12 col-md-6 mb-2">
-                    <input value="" disabled type="text" class="form-control" name="neighborhood" id="neighborhood" placeholder="Bairro">
+                    <input value="<%= neighborhood %>" disabled type="text" class="form-control" name="neighborhood" id="neighborhood" placeholder="Bairro">
                     <label for="floatingInput">Bairro*:</label>
                 </div>
                 <div class="form-floating col-sm-12 col-md-6 mb-2">
-                    <input value="" disabled type="text" class="form-control" name="complement" id="complement" placeholder="Complemento">
+                    <input value="<%= complement %>" disabled type="text" class="form-control" name="complement" id="complement" placeholder="Complemento">
                     <label for="floatingInput">Complemento*:</label>
                 </div>
                 <div class="form-floating col-sm-12 col-md-6 mb-2">
-                    <input value="" disabled type="text" class="form-control" name="city" id="city" placeholder="Cidade">
+                    <input value="<%= city %>" disabled type="text" class="form-control" name="city" id="city" placeholder="Cidade">
                     <label for="floatingInput">Cidade*:</label>
                 </div>
                 <div class="form-floating col-sm-12 col-md-6 mb-2">
-                    <input value="" type="text" class="form-control" name="email" id="email" placeholder="EMAIL">
+                    <input value="<%= email %>" type="text" class="form-control" name="email" id="email" placeholder="EMAIL">
                     <label for="floatingInput">Email*:</label>
                 </div>
                 <div class="form-floating col-sm-12 col-md-6 mb-2">
-                    <input value="" type="text" class="form-control" name="confemail" id="confemail" placeholder="ConfEmail">
+                    <input value="<%= email %>" type="text" class="form-control" name="confemail" id="confemail" placeholder="ConfEmail">
                     <label for="floatingInput">Confirmação de Email*:</label>
                 </div>
                 <div class="form-floating col-sm-12 col-md-6 mb-2">
-                    <input value="" type="text" class="form-control" name="password" id="password" placeholder="senha">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="senha">
                     <label for="floatingInput">Senha*:</label>
                 </div>
                 <div class="form-floating col-sm-12 col-md-6 mb-2">
-                    <input value="" type="text" class="form-control" name="confSenha" id="floatingInput" placeholder="ConfEmail">
+                    <input type="password" class="form-control" name="confSenha" id="floatingInput" placeholder="ConfEmail">
                     <label for="floatingInput">Confirmação de Senha*:</label>
                 </div>
             </div>

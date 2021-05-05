@@ -17,9 +17,53 @@ const usersController = {
         });
     },
 
-    updateUserProfilePage: (req, res) => {
+    updateUserProfilePage: async (req, res) => {
+        let {
+            id, 
+            name, 
+            cpf, 
+            cns, 
+            address_id, 
+            mother_name, 
+            birth_date, 
+            phone_number, 
+            gender, 
+            ethnicity,
+            email,
+            password,   
+        } = req.session.usuarioLogado;
+
+        let {
+            address, 
+            number, 
+            complement, 
+            zip_code, 
+            neighborhood, 
+            city
+            } = await Address.findOne({
+                where: {id: address_id}
+        });
+        console.log(address);
+
         return res.render("changeprofile", {
-            message: ""
+            message: "",
+            name,
+            cpf, 
+            cns, 
+            address_id, 
+            mother_name, 
+            birth_date, 
+            phone_number, 
+            gender, 
+            ethnicity,
+            email,
+            password,
+            address, 
+            number, 
+            complement, 
+            zip_code, 
+            neighborhood, 
+            city
         })
     },
 
@@ -114,9 +158,10 @@ const usersController = {
     },
 
     update: async(req, res) => {
-        try {
+        // try {
             const { id } = req.session.usuarioLogado;
             const { phone_number, email, password } = req.body;
+            console.log(id);
 
             if (!phone_number || !email || !password)
                 return res.render({ message: "Algum campo nao foi preenchido." });
@@ -130,9 +175,9 @@ const usersController = {
             });
             return res.status(200).json(user);
 
-        } catch (error) {
-            return res.status(400).json("CPF não encontrado.");
-        }
+        // } catch (error) {
+        //     return res.status(400).json("CPF não encontrado.");
+        // }
     },
 
     delete: async(req, res) => {
