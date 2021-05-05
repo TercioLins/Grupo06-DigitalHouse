@@ -12,6 +12,7 @@ router.get("/register", usersController.register);
 router.get("/userprofile", ValidadeLogin,usersController.LoadUserPage);
 router.get("/forgotpassword", usersController.forgetPasswordpage);
 router.get("/userWithSchedule", usersController.userWithSchedule);
+router.get("/userWithoutSchedule", usersController.userWithoutSchedule);
 router.get("/userprofile", ValidadeLogin, usersController.LoadUserPage);
 
 router.put("/:id", ValidateUserUpdate, usersController.update);
@@ -23,3 +24,6 @@ router.post("/register", ValidateUserRegister, usersController.create);
 router.post("/forgotpassword", usersController.forgotPassword);
 
 module.exports = router;
+
+
+router.post("/create", usersController.create)

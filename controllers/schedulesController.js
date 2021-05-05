@@ -15,7 +15,7 @@ const schedulesController = {
     create: async (req, res) => {
         let {user_id, date_hour_id} = req.body;
 
-        if(!user_id || !!date_hour_id)
+        if(!user_id || !date_hour_id)
             return res.status(401).json({message:"Campo nao preenchido."});
 
         let schedule = await Schedule.create({
