@@ -121,17 +121,17 @@
                     <label for="floatingInput">Confirmação de Senha*:</label>
                 </div>
             </div>
+         
+            <div class="modal-footer">
+                <% if (message) { %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><%= message %></strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <% } %>
+                        <button type="submit" class="btn btn-register">CADASTRAR</button>
+            </div>
         </form>
-
-        <div class="modal-footer">
-            <% if (message) { %>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong><%= message %></strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                <% } %>
-                    <button type="submit" class="btn btn-register">CADASTRAR</button>
-        </div>
     </div>
 
 

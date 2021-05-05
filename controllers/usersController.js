@@ -17,6 +17,12 @@ const usersController = {
         });
     },
 
+    updateUserProfilePage: (req, res) => {
+        return res.render("changeprofile", {
+            message: ""
+        })
+    },
+
     forgetPasswordpage: (req, res) => {
         return res.render('passwordrecovery', {
             message: ""
@@ -24,17 +30,17 @@ const usersController = {
     },
 
     userWithSchedule: async (req, res) => {
-        let user_id = req.session.usuarioLogado.id;
-        let data = params => {
+        const user_id = req.session.usuarioLogado.id;
+        const data = params => {
             return moment(params).locale("pt-br").format("L");
         }
-        let semana = params => {
+        const semana = params => {
             return moment(params).locale("pt-br").format("dddd").toUpperCase();
         }
-        let schedule = await Schedule.findOne({
+        const schedule = await Schedule.findOne({
             where: {user_id}
         });
-        let hour = await AvailableHour.findOne({
+        const hour = await AvailableHour.findOne({
             where: {id: schedule.id}
         });
         return res.render("consultschedule", {
@@ -45,16 +51,12 @@ const usersController = {
         });
     },
 
-    buscarHorario: (req, res) => {
-
-    },
-
     userWithoutSchedule: (req, res) => {
         return res.render("userschedule");
     },
 
     create: async(req, res) => {
-        try {
+        // try {
             const {
                 name,
                 cpf,
@@ -84,10 +86,15 @@ const usersController = {
                 password: senhaCrypt,
                 address_id,
             });
-            return res.status(200).json(user);
-        } catch (error) {
-            return res.status(400).json(error);
-        }
+            return res.render("userschedule", {
+                user : user
+            });
+
+        // } catch (error) {
+        //     return res.render("register", {
+        //         message: "Ocorreu um Erro!"
+        //     });
+        // }
     },
 
     update: async(req, res) => {
@@ -98,7 +105,7 @@ const usersController = {
             if (!name || !phone_number || !email || !password)
                 return res.render({ message: "Algum campo nao foi preenchido." })
 
-            let user = await User.update({
+            const user = await User.update({
                 name,
                 phone_number,
                 gender,
