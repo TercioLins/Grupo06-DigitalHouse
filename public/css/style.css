@@ -163,7 +163,7 @@ footer {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 150px;
+    height: 100px;
     background-color: #9478E6;
 }
 
@@ -189,7 +189,8 @@ footer img {
     font-style: italic;
 }
 
-.container-login, .modal-content {
+.container-login,
+.modal-content {
     background-color: #9478E6 !important;
     color: #FFFFFF;
     padding: 30px;
@@ -200,8 +201,8 @@ footer img {
     background-color: #9478E6 !important;
     color: #FFFFFF;
     padding: 30px;
-    border-radius: 30px !important; 
-    margin-top: 100px;   
+    border-radius: 30px !important;
+    margin-top: 100px;
 }
 
 .container-login h5 {
@@ -312,6 +313,13 @@ option {
     background-color: #9478E6;
     border: none;
     color: #FFFF;
+}
+
+.btn-check:focus+.btn-info,
+.btn-info:focus {
+    color: #FFFF;
+    background-color: #9478E6;
+    border: none;
 }
 
 .btn-info:hover {

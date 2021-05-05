@@ -2,75 +2,74 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/style.css">
-  <title>MODAL</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>MODAL</title>
 </head>
 
 <body>
-  <section class="d-flex align-items-center">
-      <nav id="navbar-example2" class="navbar navbar-expand-md fixed-top navbar-light bg-white">
-          <div class="container-fluid justify-content-between mx-10">
-              <a class="navbar-brand img-fluid mx-1" href="#"><img src="/images/LOGO.png" alt="logo" width="150"></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <section class="d-flex align-items-center">
+        <nav id="navbar-example2" class="navbar navbar-expand-md fixed-top navbar-light bg-white">
+            <div class="container-fluid justify-content-between mx-10">
+                <a class="navbar-brand img-fluid mx-1" href="#"><img src="/images/LOGO.png" alt="logo" width="150"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
               </button>
-              <div class="collapse navbar-collapse justify-content-end flex-grow-0" id="navbarTogglerDemo01">
-                  <ul class="nav nav-pills justify-content-end">
-                      <li class="nav-item">
-                          <a class="nav-link text-center fs-5" href="#carousel">Voltar</a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-      </nav>
-      <div class="container container-login w-50 mb-5">
-        <div class="modal-header">
-        <h5 class="modal-register" id="exampleModalLabel">Agendamento</h5>
-        </div>
-        <div class="modal-body">
-          <div class="row d-flex justify-content-center">
-            <div class="container d-flex justify-content-start m-3">
-              <select id="select1" class="form-select m-2" aria-label="Default select example">
-                <option selected>Dia</option>
-                <% for (available of availableHours) { %> 
-                  <% if (available.available) { %>
-                    <option value="<% available.id %> "><%= data(available.date) %> (<%= semana(available.date) %>) <%= available.hour %></option>                   
-                  <% } %>
-                <% } %> 
-              </select>
-              <div></div>
+                <div class="collapse navbar-collapse justify-content-end flex-grow-0" id="navbarTogglerDemo01">
+                    <ul class="nav nav-pills justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link text-center fs-5" href="/">Voltar</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-          </div>
+        </nav>
+        <div class="container container-login w-50 mb-5">
+            <div class="modal-header">
+                <h5 class="modal-register" id="exampleModalLabel">Agendamento</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row d-flex justify-content-center">
+                    <div class="container d-flex justify-content-start m-3">
+                        <form action="/hours" method="POST">
+                            <select name="hour" class="form-select m-2" aria-label="Default select example">
+                                
+                      <option selected>Dia</option>
+                      <% for (available of availableHours) { %> 
+                        <% if (available.available) { %>
+                          <option value="<%= available.id %> "><%= data(available.date) %> (<%= semana(available.date) %>) <%= available.hour %></option>                   
+                        <% } %>
+                      <% } %> 
+                    </select>
+
+                            <div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-register">AGENDAR</button>
+            </div>
+            </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-register" onclick="consultar()">AGENDAR</button>
+    </section>
+    <footer class="fixed-bottom">
+        <div class="footer-img">
+            <img src="/images/seringa.png" alt="">
         </div>
-      </div>
-  </section>
-  <footer class="fixed-bottom">
-    <div class="footer-img">
-        <img src="/images/seringa.png" alt="">
-    </div>
-    <div class="copyright">Copyright &copy; 2021</div>
-</footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-    crossorigin="anonymous"></script>
-  <script>
-    function consultar() {
-      let dia = document.getElementById("select1").value;
-      let hora = document.getElementById("select2").value;
-      if (dia == "Dia" || hora == "Hora") {
-        console.log(dia + hora);
-        alert("Marque um horário");
-      }
-    }
-  </script>
+        <div class="copyright">Copyright &copy; 2021</div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script>
+        function consultar() {
+            let dia = document.getElementById("select1").value;
+            if (dia == "Dia") {
+                alert("Marque um horário!");
+            }
+        }
+    </script>
 </body>
 
 
