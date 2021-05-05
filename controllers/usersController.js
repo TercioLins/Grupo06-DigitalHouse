@@ -21,7 +21,11 @@ const usersController = {
     },
 
     userWithSchedule: (req, res) => {
-        return res.render("userSchedule");
+        return res.render("consultschedule");
+    },
+
+    buscarHorario: (req, res) => {
+        
     },
 
     userWithoutSchedule: (req, res) => {
@@ -138,10 +142,12 @@ const usersController = {
             
             if (bcrypt.compareSync(password, user.password) && user.cpf === cpf) {
                 req.session.usuarioLogado = user;
-                return res.redirect("users/userprofile");
+                return res.redirect("/users/userprofile");
 
             } else
-                return res.render("users", {message: "Senha incorreta"});
+                return res.render("login", {
+                    message:"Senha incorreta!"
+                });
 
     },
 
@@ -149,8 +155,8 @@ const usersController = {
         const { id } = req.session.usuarioLogado;
 
         const user = await User.findOne({
-            where: {id}
-        });
+            where: { id }
+        }); 
 
         if(!user)
             return res.render("login", {message: "Usuario invalido!"});
@@ -165,7 +171,7 @@ const usersController = {
             return res.redirect("/users/userWithSchedule");
 
         else 
-            return res.redirect("/users/userWithSchedule");
+            return res.redirect("/users/userWithoutSchedule");
     },
 
     forgotPassword: async (req, res) => {

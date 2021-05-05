@@ -36,13 +36,13 @@ const schedulesController = {
     searchUserHasSchedule: async (req, res) => {
         try{
             let {id} = req.session.usuarioLogado;
-            let schedule = await Schedule.findAll({
-                where: {
-                    user_id: id
-                }
-            });
+            // let schedule = await Schedule.findAll({
+            //     where: { user_id: id },
+            //     include: {all: true, nested: true}
+            // });
+            console.log(id);
         
-            res.render("consultschedule", {schedule});
+            // res.render("consultschedule", {schedule: schedule});
             
         } catch {
             return res.status(401).json({error: "Invalid Request!"});
