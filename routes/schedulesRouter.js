@@ -5,7 +5,8 @@ var router = express.Router();
 /* GET users listing. */
 // router.get("/:id", schedulesController.index);
 router.get("/", schedulesController.searchUserHasSchedule);
-router.post("/", schedulesController.create);
+router.post("/:id", schedulesController.create);
+//router.post("/create", schedulesController.createSchedule);
 router.delete("/", schedulesController.delete);
 
 module.exports = router;
