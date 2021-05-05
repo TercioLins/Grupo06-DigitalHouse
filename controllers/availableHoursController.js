@@ -33,6 +33,13 @@ const availableHoursController = {
         const hour_id = req.body.hour;
         const user = req.session.usuarioLogado;
 
+        const data = params => {
+            return moment(params).locale("pt-br").format("L");
+        }
+        const semana = params => {
+            return moment(params).locale("pt-br").format("dddd").toUpperCase();
+        }
+
         const hour = await AvailableHour.update({
             available: false,
         },{
@@ -46,8 +53,10 @@ const availableHoursController = {
 
     
         return res.render("consultschedule", {
-            hour : hour,
-            schedule: schedule
+            hour: hour,
+            schedule: schedule,
+            data: data,
+            semana: semana
         });
     }
 }

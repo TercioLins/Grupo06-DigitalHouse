@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const { request } = require('express');
 const passGenerator = require('generate-password');
 const moment = require("moment");
-const { User, Schedule, AvailableHour, sequelize } = require("../models");
+const { User, Schedule, AvailableHour, Address, sequelize } = require("../models");
 
 const usersController = {
     login: (req, res) => {
@@ -31,6 +31,7 @@ const usersController = {
 
     userWithSchedule: async (req, res) => {
         const user_id = req.session.usuarioLogado.id;
+        
         const data = params => {
             return moment(params).locale("pt-br").format("L");
         }
@@ -40,14 +41,14 @@ const usersController = {
         const schedule = await Schedule.findOne({
             where: {user_id}
         });
-        const hour = await AvailableHour.findOne({
-            where: {id: schedule.id}
+        const avahour = await AvailableHour.findOne({
+            where: {id: schedule.date_hour_id}
         });
+        console.log(JSON.stringify(avahour.hour));
         return res.render("consultschedule", {
-            schedule,
-            hour,
-            semana,
-            data
+            avahour,
+            data,
+            semana
         });
     },
 
@@ -56,7 +57,7 @@ const usersController = {
     },
 
     create: async(req, res) => {
-        // try {
+        try {
             const {
                 name,
                 cpf,
@@ -68,8 +69,24 @@ const usersController = {
                 ethnicity,
                 email,
                 password,
-                address_id,
+                address,
+                number,
+                complement,
+                zip_code,
+                neighborhood,
+                city,
+                state,
             } = req.body;
+
+            const newAddress = await Address.create({
+                address,
+                number,
+                complement,
+                zip_code,
+                neighborhood,
+                city,
+                state,
+            });
 
             const senhaCrypt = bcrypt.hashSync(password, 10);
 
@@ -84,31 +101,28 @@ const usersController = {
                 ethnicity,
                 email,
                 password: senhaCrypt,
-                address_id,
-            });
-            return res.render("userschedule", {
-                user : user
+                address_id: newAddress.id,
             });
 
-        // } catch (error) {
-        //     return res.render("register", {
-        //         message: "Ocorreu um Erro!"
-        //     });
-        // }
+            return res.render("userschedule"), {user: user};
+
+        } catch (error) {
+            return res.render("register", {
+                message: "Ocorreu um Erro!"
+            });
+        }
     },
 
     update: async(req, res) => {
         try {
             const { id } = req.session.usuarioLogado;
-            const { name, phone_number, gender, email, password } = req.body;
+            const { phone_number, email, password } = req.body;
 
-            if (!name || !phone_number || !email || !password)
-                return res.render({ message: "Algum campo nao foi preenchido." })
+            if (!phone_number || !email || !password)
+                return res.render({ message: "Algum campo nao foi preenchido." });
 
             const user = await User.update({
-                name,
                 phone_number,
-                gender,
                 email,
                 password,
             }, {

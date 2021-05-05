@@ -6,7 +6,7 @@ const addressesController = {
         return res.status(200).json(addresses);
     },
 
-    create: async(req, res) => {
+    create: async (req, res) => {
 
         let {
             address,
@@ -32,9 +32,6 @@ const addressesController = {
         });
 
         return res.status(200).json(newAddress);
-
-
-
     },
 
     update: async(req, res) => {
