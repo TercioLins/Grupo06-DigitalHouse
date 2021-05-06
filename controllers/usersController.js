@@ -145,7 +145,7 @@ const usersController = {
                 address_id: newAddress.id,
             });
 
-            return res.render("userschedule"), {user: user};
+            return res.render("login", {message: "Usuário cadastrado com Sucesso!"});
 
         } catch (error) {
             return res.render("register", {
