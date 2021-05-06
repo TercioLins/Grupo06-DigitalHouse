@@ -98,7 +98,7 @@ const usersController = {
     },
 
     create: async(req, res) => {
-        try {
+        // try {
             const {
                 name,
                 cpf,
@@ -119,9 +119,12 @@ const usersController = {
                 state,
             } = req.body;
 
+            let street_number = parseInt(number);
+            //const newBirth = moment(birth_date).utc().format("YYYY-MM-DD");
+
             const newAddress = await Address.create({
                 address,
-                number,
+                number:street_number,
                 complement,
                 zip_code,
                 neighborhood,
@@ -147,11 +150,11 @@ const usersController = {
 
             return res.render("login", {message: "Usuário cadastrado com Sucesso!"});
 
-        } catch (error) {
-            return res.render("register", {
-                message: "Ocorreu um Erro!"
-            });
-        }
+        // } catch (error) {
+        //     return res.render("register", {
+        //         message: "Ocorreu um Erro!"
+        //     });
+        // }
     },
 
     update: async(req, res) => {
@@ -178,10 +181,6 @@ const usersController = {
             }
 
             return res.redirect("/users/userprofile");
-
-        // } catch (error) {
-        //     return res.status(400).json("CPF não encontrado.");
-        // }
     },
 
     delete: async(req, res) => {
@@ -199,10 +198,6 @@ const usersController = {
                 where: { user_id: id }
             });
             res.redirect("/users/userprofile");
-
-        // } catch (error) {
-        //     return res.status(401).json("CPF não registrado!");
-        // }
     },
 
     find: async(req, res) => {
@@ -296,7 +291,7 @@ const usersController = {
             });
 
             if (cpf == user.cpf) 
-                return res.render("login", { message: `Sua nova senha é: <strong>${newPassword}</strong>`});
+                return res.render("login", { message: `Sua nova senha é: ${newPassword}`});
 
              else
                 return res.render("passwordrecovery", { message: "Usuario inexistente!" });
