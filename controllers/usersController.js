@@ -43,7 +43,6 @@ const usersController = {
             } = await Address.findOne({
                 where: {id: address_id}
         });
-        console.log(address);
 
         return res.render("changeprofile", {
             message: "",
@@ -64,7 +63,7 @@ const usersController = {
             zip_code, 
             neighborhood, 
             city
-        })
+        });
     },
 
     forgetPasswordpage: (req, res) => {
@@ -88,7 +87,6 @@ const usersController = {
         const avahour = await AvailableHour.findOne({
             where: {id: schedule.date_hour_id}
         });
-        console.log(JSON.stringify(avahour.hour));
         return res.render("consultschedule", {
             avahour,
             data,
@@ -161,19 +159,26 @@ const usersController = {
         // try {
             const { id } = req.session.usuarioLogado;
             const { phone_number, email, password } = req.body;
-            console.log(id);
 
-            if (!phone_number || !email || !password)
-                return res.render({ message: "Algum campo nao foi preenchido." });
+            if (!password) {
+                const user = await User.update({
+                    phone_number,
+                    email,
+                }, {
+                    where: { id },
+                });                
+            } else {
+                const encryptNewPassword = bcrypt.hashSync(password, 10);
+                const user = await User.update({
+                    phone_number,
+                    email,
+                    password: encryptNewPassword
+                }, {
+                    where: { id },
+                });  
+            }
 
-            const user = await User.update({
-                phone_number,
-                email,
-                password,
-            }, {
-                where: { id },
-            });
-            return res.status(200).json(user);
+            return res.redirect("/users/userprofile");
 
         // } catch (error) {
         //     return res.status(400).json("CPF não encontrado.");
@@ -181,20 +186,24 @@ const usersController = {
     },
 
     delete: async(req, res) => {
-        try {
-            const { id } = req.params;
-            const user = await User.destroy({
-                where: { id },
+        // try {
+            const { id } = req.session.usuarioLogado;
+            const schedule = await Schedule.findOne({
+                where: {user_id: id}
             });
+            await AvailableHour.update({
+                available: true
+            }, {
+                where: {id: schedule.date_hour_id}
+            });
+            await Schedule.destroy({
+                where: { user_id: id }
+            });
+            res.redirect("/users/userprofile");
 
-            if (!user)
-                return res.status(401).json("Usuario não encontrado.");
-
-            return res.status(200).json("Deletado com sucesso.");
-
-        } catch (error) {
-            return res.status(401).json("CPF não registrado!");
-        }
+        // } catch (error) {
+        //     return res.status(401).json("CPF não registrado!");
+        // }
     },
 
     find: async(req, res) => {
@@ -261,18 +270,17 @@ const usersController = {
 
     forgotPassword: async(req, res) => {
         const { email, cpf } = req.body;
-
-        if (!email || !cpf)
+        if (!email || !cpf) {
             return res.render("passwordrecovery", {
                 message: "Preencha todos os campos!"
             });
-
+        }
         const user = await User.findOne({
-            where: { cpf, email },
+            where: { cpf }
         });
 
         if (!user)
-            return res.status(401).json({ error: "Usuario invalido!" });
+            return res.render("passwordrecovery", { message: "Usuario invalido!" });
 
         else {
             const newPassword = passGenerator.generate({
@@ -288,10 +296,10 @@ const usersController = {
                 where: { id: user.id },
             });
 
-            if (user.email === email && cpf === user.cpf)
-                return res.status(200).json({ message: `Your new password is ${newPassword}` });
+            if (cpf == user.cpf)
+                return res.render("passwordrecovery", { message: `${newPassword}`});
             else
-                return res.status(401).json({ error: "Usuario inexistente!" });
+                return res.render("passwordrecovery", { message: "Usuario inexistente!" });
         }
 
     }

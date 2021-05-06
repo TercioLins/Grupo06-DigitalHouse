@@ -15,11 +15,11 @@ router.get("/userWithSchedule", usersController.userWithSchedule);
 router.get("/userWithoutSchedule", usersController.userWithoutSchedule);
 router.get("/userprofile", ValidadeLogin, usersController.LoadUserPage);
 
-router.delete("/:id", usersController.delete);
+router.get("/delete", usersController.delete);
 
 router.post("/", usersController.loginAuth);
 router.post("/register",  usersController.create);
-router.post("/updateprofile", usersController.updateUserProfilePage);
+router.post("/updateprofile", usersController.update);
 router.post("/forgotpassword", usersController.forgotPassword);
 
 module.exports = router;
