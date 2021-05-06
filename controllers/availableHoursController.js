@@ -40,10 +40,14 @@ const availableHoursController = {
             return moment(params).locale("pt-br").format("dddd").toUpperCase();
         }
 
-        const avahour = await AvailableHour.update({
+        await AvailableHour.update({
             available: false
         },{
             where: { id: hour_id }
+        });
+
+        const avahour = await AvailableHour.findOne({
+            where: {id: hour_id}
         });
 
         await Schedule.create({

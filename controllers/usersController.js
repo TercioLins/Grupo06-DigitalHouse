@@ -300,7 +300,7 @@ const usersController = {
             });
 
             if (cpf == user.cpf) 
-                return res.render("users", { message: `Sua nova senha é: <strong>${newPassword}</strong>`});
+                return res.render("login", { message: `Sua nova senha é: <strong>${newPassword}</strong>`});
 
              else
                 return res.render("passwordrecovery", { message: "Usuario inexistente!" });
