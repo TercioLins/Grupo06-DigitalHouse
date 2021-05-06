@@ -32,8 +32,6 @@ const usersController = {
             password,   
         } = req.session.usuarioLogado;
 
-        const newBirth = moment(birth_date).format("DD/MM/YYYY");
-
         let {
             address, 
             number, 
@@ -52,7 +50,7 @@ const usersController = {
             cns, 
             address_id, 
             mother_name, 
-            birth_date: newBirth, 
+            birth_date, 
             phone_number, 
             gender, 
             ethnicity,
@@ -121,8 +119,6 @@ const usersController = {
                 state,
             } = req.body;
 
-            const newBirth = moment(birth_date).format("YYYY-MM-DD");
-
             const newAddress = await Address.create({
                 address,
                 number,
@@ -140,7 +136,7 @@ const usersController = {
                 cpf,
                 cns,
                 mother_name,
-                birth_date: newBirth,
+                birth_date,
                 phone_number,
                 gender,
                 ethnicity,
