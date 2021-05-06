@@ -32,8 +32,6 @@ const usersController = {
             password,   
         } = req.session.usuarioLogado;
 
-        const newBirth = moment(birth_date).format("DD/MM/YYYY");
-
         let {
             address, 
             number, 
@@ -52,7 +50,7 @@ const usersController = {
             cns, 
             address_id, 
             mother_name, 
-            birth_date: newBirth, 
+            birth_date, 
             phone_number, 
             gender, 
             ethnicity,
@@ -150,7 +148,7 @@ const usersController = {
                 address_id: newAddress.id,
             });
 
-            return res.render("userschedule"), {user: user};
+            return res.render("login", {message: "Usuário cadastrado com Sucesso!"});
 
         } catch (error) {
             return res.render("register", {
