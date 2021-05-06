@@ -100,7 +100,7 @@ const usersController = {
     },
 
     create: async(req, res) => {
-        // try {
+        try {
             const {
                 name,
                 cpf,
@@ -152,11 +152,11 @@ const usersController = {
 
             return res.render("userschedule"), {user: user};
 
-        // } catch (error) {
-        //     return res.render("register", {
-        //         message: "Ocorreu um Erro!"
-        //     });
-        // }
+        } catch (error) {
+            return res.render("register", {
+                message: "Ocorreu um Erro!"
+            });
+        }
     },
 
     update: async(req, res) => {
