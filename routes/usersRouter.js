@@ -10,7 +10,7 @@ const ValidadeForgotPassword = require('../middlewares/ValidadeForgotPassword');
 router.get("/", usersController.login);
 router.get("/register", usersController.register);
 router.get("/forgotpassword", usersController.forgetPasswordpage);
-router.get("/updateprofile", ValidadeLogin, usersController.updateUserProfilePage);
+router.get("/updateprofile", usersController.updateUserProfilePage);
 router.get("/userWithSchedule", usersController.userWithSchedule);
 router.get("/userWithoutSchedule", usersController.userWithoutSchedule);
 router.get("/userprofile", ValidadeLogin, usersController.LoadUserPage);

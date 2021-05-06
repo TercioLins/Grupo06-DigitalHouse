@@ -27,13 +27,13 @@
                 </div>
             </div>
         </nav>
-    
-        
+
+
         <div class="container container-login w-50 mb-5">
             <div class="modal-header">
                 <h5 class="modal-register" id="exampleModalLabel">Entrar</h5>
             </div>
-            <p><span class="recovery">Informe seus dados:</span></p>
+            <p class="inf"><span class="recovery">Informe seus dados:</span></p>
             <div class="modal-body-login">
                 <form class="modal-form" action="/users" method="POST">
                     <div class="row">
@@ -44,21 +44,21 @@
                         <div class="form-floating col-sm-12 col-md-12 mb-2">
                             <input type="password" class="form-control" name="password" id="password" placeholder="Senha">
                             <label for="floatingInput">SENHA:*</label>
-                        </div >
+                        </div>
                         <% if (message) { %>
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <strong><%= message %></strong>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                              </div>
-                        <% } %>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-register">ENTRAR</button>
-                        </div>
+                            </div>
+                            <% } %>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-register">ENTRAR</button>
+                                </div>
                     </div>
                 </form>
             </div>
         </div>
-    
+
         <footer class="fixed-bottom">
             <div class="footer-img">
                 <img src="/images/seringa.png" alt="">
