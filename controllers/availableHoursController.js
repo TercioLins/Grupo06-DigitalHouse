@@ -46,7 +46,7 @@ const availableHoursController = {
             where: { id: hour_id }
         });
 
-        const schedule = await Schedule.create({
+        await Schedule.create({
             user_id: user.id,
             date_hour_id: hour_id
         });
