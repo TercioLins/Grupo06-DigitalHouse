@@ -1,7 +1,7 @@
 const {User} = require("../models");
 
 module.exports = async (req, res, next) => {
-    let {name, cpf, cns, mother_name, birth_date, phone_number, gender, ethnicity, email, password} = req.body;
+    let {name, cpf, cns, mother_name, birth_date, phone_number, gender, ethnicity, email, password, confemail} = req.body;
     const emailValidate = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     var regBirth = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|(([1][26]|[2468][048]|[3579][26])00))))$/g;
     
@@ -32,6 +32,9 @@ module.exports = async (req, res, next) => {
     } else if (!regBirth.test(birth_date)) {
         console.log(regBirth.test(birth_date));
         return res.render("register", { message: "Data de nacimento inválida!"});
+
+    } else if (email != confemail) {
+        return res.render("register", { message: "Email diferente!"});
 
     } else {
         next();
