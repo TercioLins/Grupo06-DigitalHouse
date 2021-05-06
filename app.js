@@ -20,7 +20,8 @@ app.set('view engine', 'ejs');
 app.use(session({
   secret: "avacinade-avanade",
   saveUninitialized: true,
-  resave: true
+  resave: true,
+  cookie: {maxAge: 36000000}
 }));
 
 app.use(logger('dev'));

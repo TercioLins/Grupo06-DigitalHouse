@@ -1,24 +1,24 @@
 const {User} = require("../models");
 
 module.exports = async (req, res, next) => {
-    let {id} = req.params;
+    let {id} = req.session.usuarioLogado;
     let {phone_number, email, password} = req.body;
     let users = await User.findOne({ where: {id} });
     const emailValidate = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     
     if (users.email !== email) {
         if (!emailValidate.test(email))
-            return res.status(400).json({ erro: "Email inválido!" });
+            return res.render("updateprofile", { message: "Email inválido!" });
     }
 
     if (users.phone_number !== phone_number) {
         if (!phoneNumberValidator(phone_number))
-            return res.status(400).json({ erro: "Telefone inválido!" });
+            return res.render("updateprofile", { message: "Telefone inválido!" });
     }
 
     if (users.password !== password) {
         if (password.length < 8 || password.length > 15) 
-            return res.status(400).json({ erro: "Senha deve ser entre 8 e 15 caracteres." });
+            return res.render("updateprofile", { message: "Senha deve ser entre 8 e 15 caracteres." });
     }
     
     next();
