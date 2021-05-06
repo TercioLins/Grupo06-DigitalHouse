@@ -299,12 +299,18 @@ const usersController = {
                 where: { id: user.id },
             });
 
-            if (cpf == user.cpf)
+            if (cpf == user.cpf) 
                 return res.render("passwordrecovery", { message: `${newPassword}`});
-            else
+
+             else
                 return res.render("passwordrecovery", { message: "Usuario inexistente!" });
         }
+    },
 
+    logout: (req, res) => {
+        return req.session.destroy((error) => {
+            res.redirect("/");
+        });
     }
 };
 

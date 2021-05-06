@@ -15,6 +15,7 @@ router.get("/updateprofile", ValidadeLogin, usersController.updateUserProfilePag
 router.get("/userWithSchedule", ValidadeLogin, usersController.userWithSchedule);
 router.get("/userWithoutSchedule", ValidadeLogin, usersController.userWithoutSchedule);
 router.get("/userprofile", ValidadeLogin, usersController.LoadUserPage);
+router.get("/logout", usersController.logout);
 
 router.get("/delete", ValidadeLogin, usersController.delete);
 
