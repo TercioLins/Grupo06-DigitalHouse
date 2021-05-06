@@ -5,21 +5,22 @@ const ValidateUserRegister = require('../middlewares/ValidateUserRegister');
 const ValidateUserUpdate = require('../middlewares/ValidateUserUpdate');
 const ValidadeLogin = require('../middlewares/ValidadeLogin');
 const ValidadeForgotPassword = require('../middlewares/ValidadeForgotPassword');
+const ValidateUserLoged = require('../middlewares/ValidateUserLoged');
 
 /* GET users listing. */
-router.get("/", usersController.login);
+router.get("/", ValidateUserLoged, usersController.login);
 router.get("/register", usersController.register);
 router.get("/forgotpassword", usersController.forgetPasswordpage);
-router.get("/updateprofile", usersController.updateUserProfilePage);
-router.get("/userWithSchedule", usersController.userWithSchedule);
-router.get("/userWithoutSchedule", usersController.userWithoutSchedule);
+router.get("/updateprofile", ValidadeLogin, usersController.updateUserProfilePage);
+router.get("/userWithSchedule", ValidadeLogin, usersController.userWithSchedule);
+router.get("/userWithoutSchedule", ValidadeLogin, usersController.userWithoutSchedule);
 router.get("/userprofile", ValidadeLogin, usersController.LoadUserPage);
 
-router.get("/delete", usersController.delete);
+router.get("/delete", ValidadeLogin, usersController.delete);
 
 router.post("/", usersController.loginAuth);
-router.post("/register",  usersController.create);
-router.post("/updateprofile", usersController.update);
-router.post("/forgotpassword", usersController.forgotPassword);
+router.post("/register", ValidateUserRegister, usersController.create);
+router.post("/updateprofile", ValidateUserUpdate, usersController.update);
+router.post("/forgotpassword", ValidateUserLoged, ValidadeForgotPassword, usersController.forgotPassword);
 
 module.exports = router;

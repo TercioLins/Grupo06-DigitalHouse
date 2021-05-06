@@ -18,8 +18,7 @@ const usersController = {
     },
 
     updateUserProfilePage: async (req, res) => {
-        let {
-            id, 
+        let { 
             name, 
             cpf, 
             cns, 
@@ -165,7 +164,7 @@ const usersController = {
             const { phone_number, email, password } = req.body;
 
             if (!password) {
-                const user = await User.update({
+                await User.update({
                     phone_number,
                     email,
                 }, {
@@ -173,7 +172,7 @@ const usersController = {
                 });                
             } else {
                 const encryptNewPassword = bcrypt.hashSync(password, 10);
-                const user = await User.update({
+                await User.update({
                     phone_number,
                     email,
                     password: encryptNewPassword
