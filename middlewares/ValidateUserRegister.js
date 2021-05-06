@@ -30,6 +30,7 @@ module.exports = async (req, res, next) => {
         return res.render("register", { message: "Senha deve ser entre 8 e 15 caracteres." });
         
     } else if (!regBirth.test(birth_date)) {
+        console.log(regBirth.test(birth_date));
         return res.render("register", { message: "Data de nacimento inválida!"});
 
     } else {

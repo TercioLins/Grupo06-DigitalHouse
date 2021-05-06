@@ -100,7 +100,7 @@ const usersController = {
     },
 
     create: async(req, res) => {
-        try {
+        // try {
             const {
                 name,
                 cpf,
@@ -121,11 +121,12 @@ const usersController = {
                 state,
             } = req.body;
 
-            const newBirth = moment(birth_date).format("YYYY-MM-DD");
+            let street_number = parseInt(number);
+            //const newBirth = moment(birth_date).utc().format("YYYY-MM-DD");
 
             const newAddress = await Address.create({
                 address,
-                number,
+                number:street_number,
                 complement,
                 zip_code,
                 neighborhood,
@@ -140,7 +141,7 @@ const usersController = {
                 cpf,
                 cns,
                 mother_name,
-                birth_date: newBirth,
+                birth_date,
                 phone_number,
                 gender,
                 ethnicity,
@@ -151,11 +152,11 @@ const usersController = {
 
             return res.render("userschedule"), {user: user};
 
-        } catch (error) {
-            return res.render("register", {
-                message: "Ocorreu um Erro!"
-            });
-        }
+        // } catch (error) {
+        //     return res.render("register", {
+        //         message: "Ocorreu um Erro!"
+        //     });
+        // }
     },
 
     update: async(req, res) => {

@@ -44,7 +44,7 @@
                       <option selected>Dia</option>
                       <% for (available of availableHours) { %> 
                         <% if (available.available) { %>
-                          <option value="<%= available.id %> "><%= data(available.date) %> (<%= semana(available.date) %>) <%= available.hour %></option>                   
+                          <option value="<%= available.id %>"><%= data(available.date) %> (<%= semana(available.date) %>) <%= available.hour %></option>                   
                         <% } %>
                       <% } %> 
                     </select>
