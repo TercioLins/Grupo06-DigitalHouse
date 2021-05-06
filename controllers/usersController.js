@@ -182,10 +182,6 @@ const usersController = {
             }
 
             return res.redirect("/users/userprofile");
-
-        // } catch (error) {
-        //     return res.status(400).json("CPF não encontrado.");
-        // }
     },
 
     delete: async(req, res) => {
@@ -203,10 +199,6 @@ const usersController = {
                 where: { user_id: id }
             });
             res.redirect("/users/userprofile");
-
-        // } catch (error) {
-        //     return res.status(401).json("CPF não registrado!");
-        // }
     },
 
     find: async(req, res) => {
@@ -300,7 +292,7 @@ const usersController = {
             });
 
             if (cpf == user.cpf) 
-                return res.render("users", { message: `Sua nova senha é: <strong>${newPassword}</strong>`});
+                return res.render("login", { message: `Sua nova senha é: ${newPassword}`});
 
              else
                 return res.render("passwordrecovery", { message: "Usuario inexistente!" });
