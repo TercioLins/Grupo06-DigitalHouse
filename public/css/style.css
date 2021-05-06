@@ -44,6 +44,13 @@
         padding: 16px;
     }
     
+    .nav-link {
+        display: block;
+        padding: .5rem 1rem;
+        text-decoration: none;
+        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+    }
+    
     .nav-link.active {
         background-color: #beaef0 !important;
         color: #f8f8ff !important;
