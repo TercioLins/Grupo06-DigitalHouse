@@ -40,8 +40,8 @@ const availableHoursController = {
             return moment(params).locale("pt-br").format("dddd").toUpperCase();
         }
 
-        const hour = await AvailableHour.update({
-            available: false,
+        const avahour = await AvailableHour.update({
+            available: false
         },{
             where: { id: hour_id }
         });
@@ -50,13 +50,11 @@ const availableHoursController = {
             user_id: user.id,
             date_hour_id: hour_id
         });
-
     
         return res.render("consultschedule", {
-            hour: hour,
-            schedule: schedule,
-            data: data,
-            semana: semana
+            avahour,
+            data,
+            semana
         });
     }
 }
