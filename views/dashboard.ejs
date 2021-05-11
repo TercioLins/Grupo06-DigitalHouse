@@ -3,6 +3,15 @@
 
 <head>
     <%- include('./partials/head'); %>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <% if (message) { %>
+        <script>
+            $(document).ready(function(){
+                $("#modalcancelamento").modal('show');
+            });
+        </script>
+    <% } %>
 </head>
 
 <body>
@@ -15,7 +24,7 @@
             <div class="collapse navbar-collapse justify-content-end flex-grow-0" id="navbarTogglerDemo01">
                 <ul class="nav nav-pills justify-content-end">
                     <li class="nav-item button-nav">
-                        <a class="nav-link text-center fs-5" href="../users/updateprofile">Alterar Cadastro</a>
+                        <a class="nav-link text-center fs-5" data-bs-toggle="modal" data-bs-target="#modalcancelamento">Validar Cadastro</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-center fs-5" href="../users/logout">SAIR</a>
@@ -25,8 +34,9 @@
         </div>
     </nav>
 
-    <section class="access">
-        <a href="/hours"><button class="btn-cadastrar">AGENDAR</button></a>
+    <section class="access d-flex align-items-center justify-content-center">
+        
+        <a href="#"><button class="btn-cadastrar">Olá <%= user.name %> </button></a>
     </section>
 
     <footer>
@@ -36,7 +46,9 @@
         <div class="copyright">Copyright &copy; 2021</div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <%- include('./partials/modalvalidate'); %>
+    <%- include('./partials/maskCPF'); %>
+
 </body>
 
 </html>

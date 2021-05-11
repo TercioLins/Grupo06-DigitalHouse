@@ -1,0 +1,11 @@
+<script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <script src="https://rawgit.com/RobinHerbots/Inputmask/5.x/dist/jquery.inputmask.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $("#cpf").inputmask("999.999.999-99");
+            $("#form").submit(function(event) {
+                $("#cpf").inputmask("99999999999");
+            });
+        });
+    </script>

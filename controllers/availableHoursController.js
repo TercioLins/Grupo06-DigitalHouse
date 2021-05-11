@@ -1,8 +1,31 @@
 const { AvailableHour, Schedule, sequelize } = require('../models');
 const moment = require("moment");
+const { Op } = require('sequelize/types');
 
 const availableHoursController = {
     index: async(req, res) => {
+        let consultAvailable = await AvailableHour.findOne({
+            where: {date: moment().add(1, "days").utc().format("YYYY-MM-DD")}
+        });
+        if (moment().locale("pt-br").day() >= 0 && !consultAvailable) {
+            for (let i = 1; i <= 7; i++) {
+                let date = moment().add(i, "days").utc().format("YYYY-MM-DD");
+                for (let i = 8; i <= 17; i++) {
+                    let hour = `${i}:00`;
+                    await AvailableHour.create({
+                        date,
+                        hour
+                    });
+                }
+            }
+        };
+        await AvailableHour.update({
+            available: false
+        }, {
+            where: {date: {
+                [Op.gte]: moment().subtract(7, 'days').toDate()
+            }}
+        });  
         let availableHours = await AvailableHour.findAll();
         let data = params => {
             return moment(params).locale("pt-br").format("L");

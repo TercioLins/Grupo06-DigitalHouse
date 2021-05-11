@@ -17,9 +17,6 @@
                     <li class="nav-item button-nav">
                         <a class="nav-link text-center fs-5" href="../users/updateprofile">Alterar Cadastro</a>
                     </li>
-                    <li class="nav-item button-nav">
-                        <a class="nav-link text-center fs-5" data-bs-toggle="modal" data-bs-target="#modalcancelamento">Cancelar Agendamento</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-center fs-5" href="../users/logout">Sair</a>
                     </li>
@@ -28,34 +25,41 @@
         </div>
     </nav>
 
-    <section class="access">
-        <button class="btn-info">Informacão do agendamento: <%= data(avahour.date) %> <%= semana(avahour.date) %> às <%= avahour.hour %></button>
-    </section>
+    <div class="container container-register w-60 mb-5">
+        <div class="header">
+            <h5 class="modal-register" id="exampleModalLabel">CONSULTA DE CADASTRO</h5>
+        </div>
+        <form class="form-control" action="/users/vaccinated" method="POST">
+            <div class="row">
+                <% if (userconsult.isvaccinated) { %>
+                    Paciente consta vacinado(a) no sistema.
+                <% } else {%>
+                    <div class="form-floating col-sm-12 col-md-12 mb-2">
+                        <input value="<%= userconsult.name %>" disabled type="text" class="form-control" name="name" id="name" placeholder="Nome">
+                        <label for="floatingInput">Nome*:</label>
+                    </div>
+                    <div class="form-floating col-sm-12 col-md-6 mb-2">
+                        <input value="<%= userconsult.cpf %>" disabled type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF">
+                        <label for="floatingInput">CPF*:</label>
+                    </div>
+                    <div class="form-floating col-sm-12 col-md-6 mb-2">
+                        <input value="<%= userconsult.cns %>" disabled type="text" class="form-control" name="cns" id="cns" placeholder="SUS">
+                        <label for="floatingInput">Cartão SUS*:</label>
+                    </div>
+                <% } %>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-register">APLICAR VACINA</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
-    <footer>
+    <footer class="fixed-bottom">
         <div class="footer-img">
             <img src="/images/seringa.png" alt="">
         </div>
         <div class="copyright">Copyright &copy; 2021</div>
     </footer>
-
-    <div class="modal" id="modalcancelamento" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Cancelar Agendamento</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <p>Você tem certeza que deseja cancelar o agendamento do dia <%= data(avahour.date) %> <%= semana(avahour.date) %> às <%= avahour.hour %>? </p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Não</button>
-              <a href="/users/delete"><button type="button" class="btn btn-primary" style="background-color: #BEAEF0;">Sim</button></a>
-            </div>
-          </div>
-        </div>
-      </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 </body>

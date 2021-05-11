@@ -97,6 +97,18 @@ const usersController = {
         return res.render("userschedule");
     },
 
+    adminDashboard: async (req, res) => {
+        const {id} = req.session.usuarioLogado;
+        const user = await User.findOne({
+            where: {id}
+        });
+        const users = await User.findAndCountAll();
+        const hourAvailable = await AvailableHour.findAndCountAll({
+            where: {available: true}
+        });
+        return res.render("dashboard", {users, user, hourAvailable, message: ""});
+    },
+
     create: async(req, res) => {
         try {
             const {
@@ -217,6 +229,7 @@ const usersController = {
     loginAuth: async(req, res) => {
 
         const { cpf, password } = req.body;
+        console.log(cpf);
 
         const user = await User.findOne({
             where: { cpf }
@@ -226,7 +239,7 @@ const usersController = {
             return res.render("login", { message: "Preencha os campos!" });
 
         if (!user)
-            return res.render("login", { message: "Usuario invalido!" });
+            return res.render("login", { message: "Usuário invalido!" });
 
         if (bcrypt.compareSync(password, user.password) && user.cpf === cpf) {
             req.session.usuarioLogado = user;
@@ -246,6 +259,10 @@ const usersController = {
             where: { id }
         });
 
+        const userAdmin = await User.findOne({
+            where: {id, is_admin: true}
+        });
+
         if (!user)
             return res.render("login", { message: "Usuario invalido!" });
 
@@ -253,9 +270,11 @@ const usersController = {
             where: { user_id: user.id }
         });
 
-        // sem agendamento -> userSchedule
-        // com agendamento -> constultSchedule
-        if (schedule)
+        
+        if (userAdmin) {
+            return res.redirect("/users/adminDashboard");
+
+        } else if (schedule)
             return res.redirect("/users/userWithSchedule");
 
         else
@@ -293,7 +312,7 @@ const usersController = {
             if (cpf == user.cpf) 
                 return res.render("login", { message: `Sua nova senha é: ${newPassword}`});
 
-             else
+            else
                 return res.render("passwordrecovery", { message: "Usuario inexistente!" });
         }
     },
@@ -302,6 +321,36 @@ const usersController = {
         return req.session.destroy((error) => {
             res.redirect("/");
         });
+    },
+
+    consultUser: async (req, res) => {
+        const {cpf} = req.body;
+        const {id} = req.session.usuarioLogado;
+        const user = await User.findOne({
+            where: {id}
+        });
+        const users = await User.findAndCountAll();
+        const hourAvailable = await AvailableHour.findAndCountAll({
+            where: {available: true}
+        });
+        let userconsult = await User.findOne({
+            where: {cpf}
+        });
+        if (!userconsult) 
+            res.render("dashboard", {message: "CPF não encontrado!", user});
+        else 
+            res.render("consultuser", {userconsult});
+    },
+
+    vaccinated: async (req, res) => {
+        let cpf = req.body.cpf;
+        console.log(cpf);
+        await User.update({
+            is_vaccinated: true
+        }, {
+            where: {cpf}
+        });
+        res.redirect("/users/userprofile")
     }
 };
 

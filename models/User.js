@@ -11,6 +11,14 @@ module.exports = (sequelize, DataTypes) => {
             ethnicity: DataTypes.STRING,
             email: DataTypes.STRING,
             password: DataTypes.STRING,
+            is_admin: {
+                type: DataTypes.BOOLEAN,
+                defaultValue: false
+            },
+            is_vaccinated: {
+                type: DataTypes.BOOLEAN,
+                defaultValue: false
+            },
             createdAt: {
                 type: DataTypes.DATE,
                 defaultValue: DataTypes.NOW,
